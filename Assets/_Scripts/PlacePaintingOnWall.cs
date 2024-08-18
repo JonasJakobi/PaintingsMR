@@ -15,7 +15,6 @@ public class PlacePaintingOnWall : MonoBehaviour
     private float pinchStartTime;
     private GameObject currentCube;
     private Vector3 initialPinchPosition;
-    private Vector3 initialScale = new Vector3(0.2f, 0.2f, 0.001f);
 
     private Vector3 startPoint, endPoint;
     private Vector3 center, size;
@@ -48,7 +47,6 @@ public class PlacePaintingOnWall : MonoBehaviour
         pinchStartTime = Time.time;
         initialPinchPosition = rightHand.PointerPose.position;
 
-        // Set start point for scaling
         startPoint = rightHand.PointerPose.position;
 
         TryPlaceCube();
@@ -60,10 +58,8 @@ public class PlacePaintingOnWall : MonoBehaviour
         {
             endPoint = rightHand.PointerPose.position;
 
-            // Update center and size based on current pinch points
             UpdateCenterAndSize();
 
-            // Update the cube position and scale
             UpdatePreviewRectangle();
         }
     }
@@ -84,7 +80,6 @@ public class PlacePaintingOnWall : MonoBehaviour
         if (Physics.Raycast(rightHand.PointerPose.position, rightHand.PointerPose.forward, out raycastResult, maxPlacementDistance))
         {
             currentCube = Instantiate(cubePrefab, raycastResult.point, Quaternion.LookRotation(-raycastResult.normal));
-            currentCube.transform.localScale = Vector3.zero;
             currentCube.SetActive(true);
         }
     }
