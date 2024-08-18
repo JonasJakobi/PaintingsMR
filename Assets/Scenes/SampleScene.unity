@@ -4842,15 +4842,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1172165174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19bcf12065fb0142b54fc9dfbefd76a, type: 3}
+  m_Script: {fileID: 11500000, guid: cc61093764b0fb142908e481d38e2e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 368066933}
   pinchThreshold: 0.95
   pinchDuration: 1
   maxPlacementDistance: 2
-  cubePrefab: {fileID: 723911372088303892, guid: aeb72ac04821a054296132d2dd8106f5, type: 3}
-  paintingPrefab: {fileID: 7762758157326471761, guid: f632c222fe10e10438acede95c66176a, type: 3}
+  cubePrefab: {fileID: 723911372088303892, guid: 466fc993ab98ffe45b56c49ac920fc12, type: 3}
+  paintingPrefab: {fileID: 7762758157326471761, guid: 12d43d07f564eb242ba1af9d0b54776d, type: 3}
 --- !u!4 &1172165176
 Transform:
   m_ObjectHideFlags: 0
