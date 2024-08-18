@@ -10,5 +10,14 @@ public class PaintingData : ScriptableObject
     public int yearMade;
     //List of tags
     public PaintingTag[] tags;
+
+    //SMall comments
+    
+}
+
+public class FrameData : ScriptableObject
+{
+    public Vector3 scale;
+    public PaintingData paintingData;
     
 }
