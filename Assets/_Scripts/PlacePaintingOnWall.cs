@@ -7,7 +7,7 @@ public class PlacePaintingOnWall : MonoBehaviour
     public OVRHand rightHand;
     public float pinchThreshold = 0.95f;
     public float pinchDuration = 1f;
-    public float maxPlacementDistance = 2f;
+    public float maxPlacementDistance = 2f; // Maximum distance for placement
     public GameObject cubePrefab;
     public GameObject paintingPrefab;
 
@@ -76,12 +76,15 @@ public class PlacePaintingOnWall : MonoBehaviour
 
     void TryPlaceCube()
     {
-        RaycastHit raycastResult;
-        if (Physics.Raycast(rightHand.PointerPose.position, rightHand.PointerPose.forward, out raycastResult, maxPlacementDistance))
-        {
-            currentCube = Instantiate(cubePrefab, raycastResult.point, Quaternion.LookRotation(-raycastResult.normal));
-            currentCube.SetActive(true);
-        }
+        // Calculate the position directly in front of the pinch location
+        Vector3 pinchForward = rightHand.PointerPose.forward;
+        Vector3 pinchPosition = rightHand.PointerPose.position + pinchForward * maxPlacementDistance;
+
+        // Set the orientation to match the direction of the pinch
+        Quaternion pinchRotation = Quaternion.LookRotation(pinchForward);
+
+        currentCube = Instantiate(cubePrefab, pinchPosition, pinchRotation);
+        currentCube.SetActive(true);
     }
 
     void UpdateCenterAndSize()
