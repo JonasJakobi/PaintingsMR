@@ -17,6 +17,9 @@ public class PlacePaintingOnWall : MonoBehaviour
     private Vector3 initialPinchPosition;
     private Vector3 initialScale = new Vector3(0.2f, 0.2f, 0.001f);
 
+    private Vector3 startPoint, endPoint;
+    private Vector3 center, size;
+
     void Update()
     {
         if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Index))
@@ -45,6 +48,9 @@ public class PlacePaintingOnWall : MonoBehaviour
         pinchStartTime = Time.time;
         initialPinchPosition = rightHand.PointerPose.position;
 
+        // Set start point for scaling
+        startPoint = rightHand.PointerPose.position;
+
         TryPlaceCube();
     }
 
@@ -52,7 +58,13 @@ public class PlacePaintingOnWall : MonoBehaviour
     {
         if (Time.time - pinchStartTime >= pinchDuration && currentCube != null)
         {
-            ResizeCube();
+            endPoint = rightHand.PointerPose.position;
+
+            // Update center and size based on current pinch points
+            UpdateCenterAndSize();
+
+            // Update the cube position and scale
+            UpdatePreviewRectangle();
         }
     }
 
@@ -77,13 +89,18 @@ public class PlacePaintingOnWall : MonoBehaviour
         }
     }
 
-    void ResizeCube()
+    void UpdateCenterAndSize()
+    {
+        center = (startPoint + endPoint) / 2f;
+        size = new Vector3(Mathf.Abs(endPoint.x - startPoint.x), Mathf.Abs(endPoint.y - startPoint.y), Mathf.Abs(endPoint.z - startPoint.z));
+    }
+
+    void UpdatePreviewRectangle()
     {
         if (currentCube != null)
         {
-            Vector3 currentPinchPosition = rightHand.PointerPose.position;
-            float distance = Vector3.Distance(initialPinchPosition, currentPinchPosition);
-            currentCube.transform.localScale = initialScale * distance;
+            currentCube.transform.position = center;
+            currentCube.transform.localScale = size;
         }
     }
 
