@@ -4,114 +4,105 @@ using System.Collections;
 
 public class PlacePaintingOnWall : MonoBehaviour
 {
-    public OVRHand rightHand; // Reference to the right-hand controller (OVRHand)
-    public float pinchThreshold = 0.95f; // Threshold to detect a pinch gesture
-    public float pinchDuration = 1f; // Duration the pinch gesture needs to be held before placing or resizing
-    public float maxPlacementDistance = 2f; // Maximum distance for placing the cube on the wall
-    public GameObject cubePrefab; // Prefab of the cube to be placed
-    public GameObject paintingPrefab; // Prefab of the painting to be placed on top of the cube
+    public OVRHand rightHand;
+    public float pinchThreshold = 0.95f;
+    public float pinchDuration = 1f;
+    public float maxPlacementDistance = 2f;
+    public GameObject cubePrefab;
+    public GameObject paintingPrefab;
 
-    private bool isPinching = false; // Tracks whether the user is currently pinching
-    private float pinchStartTime; // Stores the time when the pinch gesture started
-    private GameObject currentCube; // Reference to the currently placed cube
-    private Vector3 initialPinchPosition; // Position of the hand when the pinch started
-    private Vector3 initialScale = new Vector3(0.2f, 0.2f, 0.001f); // Initial scale for the cube
+    private bool isPinching = false;
+    private float pinchStartTime;
+    private GameObject currentCube;
+    private Vector3 initialPinchPosition;
+    private Vector3 initialScale = new Vector3(0.2f, 0.2f, 0.001f);
 
     void Update()
     {
-        // Check if the user is pinching with the index finger
         if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Index))
         {
-            if (!isPinching) // If pinch just started
+            if (!isPinching)
             {
-                StartPinch(); // Start pinch logic
+                StartPinch();
             }
-            else // If already pinching
+            else
             {
-                UpdatePinch(); // Update pinch logic
+                UpdatePinch();
             }
         }
         else
         {
-            if (isPinching) // If the user stops pinching
+            if (isPinching)
             {
-                EndPinch(); // End pinch logic
+                EndPinch();
             }
         }
     }
 
     void StartPinch()
     {
-        isPinching = true; // Set the pinching flag to true
-        pinchStartTime = Time.time; // Record the time when the pinch started
-        initialPinchPosition = rightHand.PointerPose.position; // Store the initial position of the pinch
+        isPinching = true;
+        pinchStartTime = Time.time;
+        initialPinchPosition = rightHand.PointerPose.position;
 
-        // Try placing the cube when the pinch starts
         TryPlaceCube();
     }
 
     void UpdatePinch()
     {
-        // Check if the pinch duration has been met or exceeded
         if (Time.time - pinchStartTime >= pinchDuration && currentCube != null)
         {
-            ResizeCube(); // Resize the cube while pinching
+            ResizeCube();
         }
     }
 
     void EndPinch()
     {
-        isPinching = false; // Reset the pinching flag
+        isPinching = false;
 
-        if (currentCube != null) // If there is a cube that was resized
+        if (currentCube != null)
         {
-            PlacePaintingOnCube(); // Place the painting on top of the cube
-            currentCube = null; // Clear the current cube reference
+            PlacePaintingOnCube();
         }
     }
 
     void TryPlaceCube()
     {
         RaycastHit raycastResult;
-        // Cast a ray from the hand position forward and check if it hits within the max placement distance
         if (Physics.Raycast(rightHand.PointerPose.position, rightHand.PointerPose.forward, out raycastResult, maxPlacementDistance))
         {
-            // Instantiate the cube at the hit point, oriented to face away from the wall
             currentCube = Instantiate(cubePrefab, raycastResult.point, Quaternion.LookRotation(-raycastResult.normal));
-            currentCube.transform.localScale = Vector3.zero; // Start with a scale of zero
-            currentCube.SetActive(true); // Activate the cube when it's placed
+            currentCube.transform.localScale = Vector3.zero;
+            currentCube.SetActive(true);
         }
     }
 
     void ResizeCube()
     {
-        if (currentCube != null) // If there is a cube to resize
+        if (currentCube != null)
         {
-            Vector3 currentPinchPosition = rightHand.PointerPose.position; // Get the current hand position
-            float distance = Vector3.Distance(initialPinchPosition, currentPinchPosition); // Calculate the movement distance
-            currentCube.transform.localScale = initialScale * distance; // Scale the cube based on the movement distance
+            Vector3 currentPinchPosition = rightHand.PointerPose.position;
+            float distance = Vector3.Distance(initialPinchPosition, currentPinchPosition);
+            currentCube.transform.localScale = initialScale * distance;
         }
     }
 
     void PlacePaintingOnCube()
     {
-        if (currentCube != null && paintingPrefab != null) // Ensure there is a cube and painting prefab
+        if (currentCube != null && paintingPrefab != null)
         {
-            // Calculate the final scale of the painting
-            Vector3 paintingScale = currentCube.transform.localScale - new Vector3(0.01f, 0.01f, 0.0f);
+            Vector3 paintingScale = currentCube.transform.localScale - new Vector3(0.0014f, 0.0014f, 0.0f);
 
-            // Ensure the painting scale does not go negative due to the subtraction
             paintingScale = new Vector3(
-                Mathf.Max(0.01f, paintingScale.x),
-                Mathf.Max(0.01f, paintingScale.y),
-                Mathf.Max(0.001f, paintingScale.z)
+                Mathf.Max(0.001f, paintingScale.x),
+                Mathf.Max(0.001f, paintingScale.y),
+                paintingScale.z
             );
 
-            // Instantiate the painting prefab at the same position and orientation as the cube
             GameObject painting = Instantiate(paintingPrefab, currentCube.transform.position, currentCube.transform.rotation);
-
-            // Set the painting's scale slightly smaller than the cube
             painting.transform.localScale = paintingScale;
+
+            currentCube.transform.localScale = paintingScale + new Vector3(0.0014f, 0.0014f, 0.0f);
         }
     }
 }
