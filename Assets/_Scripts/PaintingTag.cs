@@ -14,6 +14,8 @@ public enum PaintingTag
     Joyful,
     Melancholic,
     Serene,
-    Mysterious
+    Mysterious,
+    Colorful,
+    NotColorful
     // Add more tags as needed
 }

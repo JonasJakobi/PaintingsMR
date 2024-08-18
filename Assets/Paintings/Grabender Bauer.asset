@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79684307e63048489415ff1b4c85ee7, type: 3}
+  m_Name: Grabender Bauer
+  m_EditorClassIdentifier: 
+  paintingSprite: {fileID: 21300000, guid: 429f9321b8154c2488a685d1c409ae0f, type: 3}
+  artist: Ernst Ludwig Kirchner
+  title: Grabender Bauer
+  description: "Ernst Ludwig Kirchner was a German expressionist painter and printmaker
+    and one of the founders of the artists group Die Br\xFCcke or \"The Bridge\",
+    a key group leading to the foundation of Expressionism in 20th-century art. He
+    volunteered for army service in the First World War, but soon suffered a breakdown
+    and was discharged. His work was branded as \"degenerate\" by the Nazis in 1933,
+    and in 1937 more than 600 of his works were sold or destroyed."
+  yearMade: 1924
+  tags: 00000000100000000e000000

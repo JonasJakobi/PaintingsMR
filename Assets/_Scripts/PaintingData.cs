@@ -5,6 +5,7 @@ public class PaintingData : ScriptableObject
 {
     public Sprite paintingSprite;
     public string artist;
+    public string title;
     public string description;
     public int yearMade;
     //List of tags

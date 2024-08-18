@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79684307e63048489415ff1b4c85ee7, type: 3}
+  m_Name: stillLifeWithFlowers
+  m_EditorClassIdentifier: 
+  paintingSprite: {fileID: 21300000, guid: 70b273af4ed170140873df85a0744ff2, type: 3}
+  artist: 'Adolf Stademann '
+  title: "Antonin Proch\xE1zka"
+  description: "Anton\xEDn Proch\xE1zka was a Czech Modernist painter and graphic
+    artist.  He graduated from the gymnasium in Krom\u011B\u0159\xED\u017E then,
+    in 1902, began studies at the Academy of Arts, Architecture and Design in Prague
+    with Vlaho Bukovac, Hanu\u0161 Schwaiger and Max \u0160vabinsk\xFD. In 1907,
+    he and his classmate, Emil Filla, joined the group \"Osma\" (\"The Eight\"),
+    together with Bohumil Kubi\u0161ta, Emil Artur Longen [cs], Otakar Kub\xEDn,
+    Bed\u0159ich Feigl, Max Horb [cs] and Willi Nowak [cs]. It was then that he was
+    introduced to the newest art movements, such as Fauvism and Cubism."
+  yearMade: 1915
+  tags: 0000000004000000
