@@ -29,3 +29,4 @@ sysinfo.txt
 *.pidb
 .DS_Store
 
+*.dwlt
