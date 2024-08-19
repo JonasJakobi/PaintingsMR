@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c7a724db34e573458a9dcab96430f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  thumbDestroyDelay: 5
+  moveSpeed: 0.2
+  constMoveUpSpeed: 0.1
+  thumbDestroyDelay: 3
   thumUpGo: {fileID: 4688812921638937065}
   thumbDownGo: {fileID: 739340806311919133}
   starRandomOffset: 0.1
