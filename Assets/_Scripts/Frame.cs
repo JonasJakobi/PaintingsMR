@@ -2,6 +2,7 @@ using UnityEngine;
 using Meta.XR.MRUtilityKit;
 using OVR;
 using System.Collections.Generic;
+using DG.Tweening;
 public class Frame : MonoBehaviour {
     public static Frame Instance; 
     
@@ -33,7 +34,7 @@ public class Frame : MonoBehaviour {
     public float timeSinceNotPinching = 0f;
     public float timeSincePinching = 0f;
     public float pinchGraceTime = 0.07f;
-    public float startPlacingTime = 2f;
+    public float startPlacingTime = 1f;
     private void Start() {
         Instance = this;
         //create a frame
@@ -51,9 +52,12 @@ public class Frame : MonoBehaviour {
             return;
         }
 
-        PlacementInputs();
+        
         if(movingIsOn){
             MovingInputs();
+        }
+        else{
+            PlacementInputs();
         }
         
     }
@@ -130,6 +134,7 @@ public class Frame : MonoBehaviour {
             return;
         }
         
+        
     }
     public PaintingObject HaveFrameBePaintingObject(Vector3 startPos, Vector3 endPos, bool needsAnchor = true){
         var obj = bg.AddComponent<PaintingObject>();
@@ -138,7 +143,12 @@ public class Frame : MonoBehaviour {
         if(needsAnchor){
             StartCoroutine(obj.CreateSpatialAnchor());
         }
+        bg = obj.gameObject;
+        var scale = bg.transform.localScale;
+        bg.transform.localScale = new Vector3(0, 0, 0);
+        bg.transform.DOScale(scale, 1f).SetEase(Ease.OutBack);
         return obj;
+        
     }
 
     public Vector3 GetClosestMRUK(Vector3 point){

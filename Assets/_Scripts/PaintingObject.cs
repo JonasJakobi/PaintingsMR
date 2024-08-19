@@ -14,7 +14,12 @@ public class PaintingObject : MonoBehaviour
     
     private void Start() {
         
-        //Instantiate a blank gameobject
+       
+
+    }
+    public void Initialize( ){
+        frameData = new FrameData();
+         //Instantiate a blank gameobject
 
         paintingRenderer =new GameObject("Painting Renderer").AddComponent<SpriteRenderer>();
         paintingRenderer.transform.position = this.transform.position;
@@ -33,10 +38,6 @@ public class PaintingObject : MonoBehaviour
 
         FrameManager.Instance.RegisterNewFrame(this);
 
-
-    }
-    public void Initialize( ){
-        frameData = new FrameData();
 
     }
 
@@ -114,9 +115,9 @@ public class PaintingObject : MonoBehaviour
     public async void OnEraseButtonPressed()
     {
         FrameManager.Instance.frames.Remove(this);
-        PlayerPrefs.DeleteKey(GetComponent<OVRSpatialAnchor>().Uuid.ToString());
-        PlayerPrefs.SetString("SavedAnchors", PlayerPrefs.GetString("SavedAnchors", "").Replace(GetComponent<OVRSpatialAnchor>().Uuid.ToString() + ",", ""));
-        var result = await GetComponent<OVRSpatialAnchor>().EraseAnchorAsync();
+        PlayerPrefs.DeleteKey(transform.parent.GetComponent<OVRSpatialAnchor>().Uuid.ToString());
+        PlayerPrefs.SetString("SavedAnchors", PlayerPrefs.GetString("SavedAnchors", "").Replace(transform.parent.GetComponent<OVRSpatialAnchor>().Uuid.ToString() + ",", ""));
+        var result = await transform.parent.GetComponent<OVRSpatialAnchor>().EraseAnchorAsync();
         if (result.Success)
         {
             Debug.Log($"Successfully erased anchor.");
