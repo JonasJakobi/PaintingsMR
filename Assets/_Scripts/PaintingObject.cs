@@ -3,6 +3,7 @@ using OVR;
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using DG.Tweening;
 
 
 public class PaintingObject : MonoBehaviour
@@ -13,7 +14,7 @@ public class PaintingObject : MonoBehaviour
     
     private void Start() {
         
-        StartCoroutine(CreateSpatialAnchor());
+        //StartCoroutine(CreateSpatialAnchor());
         //Instantiate a blank gameobject
 
         paintingRenderer =new GameObject("Painting Renderer").AddComponent<SpriteRenderer>();
@@ -42,8 +43,17 @@ public class PaintingObject : MonoBehaviour
 
     public void LoadPaintingData(PaintingData data)
     {
-        frameData.paintingData = data;
-        GetComponentInChildren<SpriteRenderer>().sprite = data.paintingSprite;
+        var rend = GetComponentInChildren<SpriteRenderer>();
+        float initialdelay = 0.5f;
+        if(rend.sprite == null){
+            initialdelay = 0;
+        }
+        //DO fade to transparent, change sprite, fade back to visible
+        rend.DOColor(new Color(1,1,1,0), initialdelay).OnComplete(() => {
+            frameData.paintingData = data;
+            rend.sprite = data.paintingSprite;
+            rend.DOColor(new Color(1,1,1,1), 0.5f);
+        });
     }
     public bool isLandsape(){
         return transform.localScale.x > transform.localScale.y;

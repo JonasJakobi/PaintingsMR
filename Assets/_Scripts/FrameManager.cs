@@ -80,7 +80,7 @@ public class FrameManager : MonoBehaviour {
 
     public void PickPaintingFor(PaintingObject frame){
         //filter for only landscape if frame is landscape
-            List<PaintingData> availablePaintings = paintings.Where(p => !pickedPaintings.Contains(p)).Where(p => !frame.frameData.paintingData).Where(p => p.isLandsape == frame.isLandsape()).ToList();
+            List<PaintingData> availablePaintings = paintings.Where(p => !pickedPaintings.Contains(p)).Where(p => frame.frameData.paintingData != p).Where(p => p.isLandsape == frame.isLandsape()).ToList();
             //pick a random painting
             var pickedPainting = availablePaintings[UnityEngine.Random.Range(0, availablePaintings.Count)];
             frame.frameData.paintingData = pickedPainting;

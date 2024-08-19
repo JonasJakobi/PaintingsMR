@@ -3,7 +3,7 @@ using Meta.XR.MRUtilityKit;
 using OVR;
 using System.Collections.Generic;
 public class Frame : MonoBehaviour {
-
+    public static Frame Instance; 
     
     public GameObject framePartPrefab;
     public GameObject bgPrefab;
@@ -16,7 +16,7 @@ public class Frame : MonoBehaviour {
     GameObject framePart3;
     GameObject framePart4;
 
-    GameObject bg;
+    public GameObject bg;
 
     public OVRHand usingHand;
 
@@ -25,11 +25,15 @@ public class Frame : MonoBehaviour {
 
     bool isPlacing = false;
 
+    public GameObject objectToMove;
+    public bool movingIsOn;
+
 
 
     public float timeSinceNotPinching = 0f;
     public float pinchGraceTime = 0.1f;
     private void Start() {
+        Instance = this;
         //create a frame
         //InitializeFrames();
         //UpdateFrames(new Vector3(0,0,0), new Vector3(2,5,5));
@@ -44,7 +48,27 @@ public class Frame : MonoBehaviour {
             indexTip = usingHand.transform.FindChildRecursive("Hand_IndexTip");
             return;
         }
+
+        PlacementInputs();
+        MovingInputs();
+    }
+    public void SetObjectToMove(GameObject obj){
+        objectToMove = obj;
+        movingIsOn = true;
+    }
+    public void DisableObjectToMove(){
+        objectToMove = null;
+        movingIsOn = false;
+    }
+
+    private void MovingInputs(){
         if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Index)){
+            bg.transform.position = ClosestWallPos(indexTip.position);
+        }
+    }
+    private void PlacementInputs(){
+        
+        if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Middle)){
             timeSinceNotPinching = 0f;
             if(!isPlacing){//start placing
                 startPos = ClosestWallPos(indexTip.position);
@@ -62,29 +86,18 @@ public class Frame : MonoBehaviour {
                 else{
                     timeSinceNotPinching += Time.deltaTime;
                 }
-                
-
-
             }
         }
     }
+    
 
     public Vector3 ClosestWallPos(Vector3 pos){
         
         LabelFilter filter = LabelFilter.Included(MRUKAnchor.SceneLabels.WALL_FACE);
-        Debug.Log("lable of filter" + filter);
-        Debug.Log("pos" + pos);
-        Debug.Log("MRUK" + MRUK.Instance);
-        if(MRUK.Instance.GetCurrentRoom() == null){
-            Debug.Log("no room");
-        }
-        Debug.Log("TryGetClosestSurfacePosition" + MRUK.Instance.GetCurrentRoom().TryGetClosestSurfacePosition(pos, out Vector3 output,out MRUKAnchor anchor, filter));
-        //MRUK.Instance.GetCurrentRoom().TryGetClosestSurfacePosition(pos, out Vector3 output,out MRUKAnchor anchor1 , filter);
-       Debug.Log(output);
+  
+        MRUK.Instance.GetCurrentRoom().TryGetClosestSurfacePosition(pos, out Vector3 output,out MRUKAnchor anchor, filter);
         return output;
         
-        Debug.Log("MRUK - GetCurrentRoom" + MRUK.Instance.GetCurrentRoom());
-        return pos;
     }
 
     
@@ -125,6 +138,11 @@ public class Frame : MonoBehaviour {
     }
     public void UpdateFrames(Vector3 startPos, Vector3 endPos){
         Vector3 surfaceNormal = Vector3.Cross(endPos - startPos, Vector3.up).normalized;
+        //check if the surface normal is pointing towards the user more then away from the user
+        bool pointingInHandDiretion = Vector3.Dot(surfaceNormal, (indexTip.position - startPos).normalized) < 0;
+        if(!pointingInHandDiretion){
+            surfaceNormal = -surfaceNormal;
+        }
         //create 4 cubes for the frame
 
         //create the first cube
