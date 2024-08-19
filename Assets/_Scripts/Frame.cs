@@ -79,9 +79,11 @@ public class Frame : MonoBehaviour {
         isPlacing = false;
         if(bg.transform.localScale.x + bg.transform.localScale.y < minSize){
             Destroy(bg.gameObject);
+            return;
         }//else if the ratio between x scale and y scale is bigger than 
         else if(bg.transform.localScale.x / bg.transform.localScale.y > maxRatioDifference || bg.transform.localScale.y / bg.transform.localScale.x > maxRatioDifference){
             Destroy(bg.gameObject);
+            return;
         }
         var obj = bg.AddComponent<PaintingObject>();
         obj.Initialize();

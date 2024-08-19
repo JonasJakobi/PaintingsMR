@@ -12,6 +12,7 @@ public class FrameManager : MonoBehaviour {
     List<OVRSpatialAnchor.UnboundAnchor> _unboundAnchors = new();
 
     public List<PaintingData> paintings = new List<PaintingData>();
+    List<PaintingData> pickedPaintings = new List<PaintingData>();
     public List<PaintingObject> frames = new List<PaintingObject>();
 
     public static FrameManager Instance;
@@ -55,6 +56,7 @@ public class FrameManager : MonoBehaviour {
 
     public void RegisterNewFrame(PaintingObject obj){
         frames.Add(obj);
+        PickPaintingFor(obj);
     }
 
     public IEnumerator PickNewPaintingsRoutine(){
@@ -67,17 +69,23 @@ public class FrameManager : MonoBehaviour {
 
     public void PickNewPaintings(){
         
-        List<PaintingData> pickedPaintings = new List<PaintingData>();
+        pickedPaintings = new List<PaintingData>();
         
         foreach(var frame in frames){
-            //filter for only landscape if frame is landscape
-            List<PaintingData> availablePaintings = paintings.Where(p => !pickedPaintings.Contains(p)).Where(p => p.isLandsape == frame.isLandsape()).ToList();
-            //pick a random painting
-            var pickedPainting = availablePaintings[UnityEngine.Random.Range(0, availablePaintings.Count)];
-            pickedPaintings.Add(pickedPainting);
-            frame.LoadPaintingData(pickedPainting);
+            PickPaintingFor(frame);
         }
     }
+
+    public void PickPaintingFor(PaintingObject frame){
+        //filter for only landscape if frame is landscape
+            List<PaintingData> availablePaintings = paintings.Where(p => !pickedPaintings.Contains(p)).Where(p => !frame.frameData.paintingData).Where(p => p.isLandsape == frame.isLandsape()).ToList();
+            //pick a random painting
+            var pickedPainting = availablePaintings[UnityEngine.Random.Range(0, availablePaintings.Count)];
+            frame.frameData.paintingData = pickedPainting;
+            pickedPaintings.Add(pickedPainting);
+            frame.LoadPaintingData(pickedPainting);
+    }
+       
 
     async void LoadAnchorsByUuid(IEnumerable<Guid> uuids)
     {
