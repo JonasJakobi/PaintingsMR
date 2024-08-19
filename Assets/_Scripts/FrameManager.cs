@@ -3,18 +3,30 @@ using OVR;
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using System.Linq;
 using Unity.VisualScripting;
 
 
-public class PaintingManager : MonoBehaviour {
+public class FrameManager : MonoBehaviour {
       // This reusable buffer helps reduce pressure on the garbage collector
     List<OVRSpatialAnchor.UnboundAnchor> _unboundAnchors = new();
 
+    List<PaintingData> paintings = new List<PaintingData>();
+    List<PaintingObject> frames = new List<PaintingObject>();
 
-    List<PaintingObject> paintings = new List<PaintingObject>();
+    public FrameManager Instance;
 
+    public float newPaintingsInterval = 10f;
+    
+    
+    
     public void Start()
     {
+        Instance = this;
+        StartCoroutine(PickNewPaintingsRoutine());
+
+        //----------------------------RETURNING RN -------->
+        return;
         //get all keys currently saved in playerprefs
         var keys = PlayerPrefs.GetString("SavedAnchors", "").Split(',');
         if(keys.Length > 0)
@@ -32,6 +44,34 @@ public class PaintingManager : MonoBehaviour {
         }
         
 
+    }
+
+    public IEnumerator PickNewPaintingsRoutine(){
+        //Wait for the interval, pick new, go again
+        while(true){
+            yield return new WaitForSeconds(newPaintingsInterval);
+            PickNewPaintings();
+        }
+    }
+
+    public void PickNewPaintings(){
+        //get all painting data
+        var paintingData = Resources.LoadAll<PaintingData>("Paintings");
+        //add all painting data to the list
+        foreach (var painting in paintingData)
+        {
+            paintings.Add(painting);
+        }
+        List<PaintingData> pickedPaintings = new List<PaintingData>();
+        
+        foreach(var frame in frames){
+            //filter for only landscape if frame is landscape
+            List<PaintingData> availablePaintings = paintings.Where(p => !pickedPaintings.Contains(p)).Where(p => p.isLandsape == frame.isLandsape()).ToList();
+            //pick a random painting
+            var pickedPainting = availablePaintings[UnityEngine.Random.Range(0, availablePaintings.Count)];
+            pickedPaintings.Add(pickedPainting);
+            frame.LoadPaintingData(pickedPainting);
+        }
     }
 
     async void LoadAnchorsByUuid(IEnumerable<Guid> uuids)
@@ -62,7 +102,7 @@ public class PaintingManager : MonoBehaviour {
                         FrameData frameData = JsonUtility.FromJson<FrameData>(PlayerPrefs.GetString(unboundAnchor.Uuid.ToString()));
                         spatialAnchor.AddComponent<PaintingObject>().LoadPaintingData(frameData.paintingData);
                         spatialAnchor.transform.localScale = frameData.scale;
-                        paintings.Add(spatialAnchor.GetComponent<PaintingObject>());
+                        frames.Add(spatialAnchor.GetComponent<PaintingObject>());
                     }
                     else
                     {

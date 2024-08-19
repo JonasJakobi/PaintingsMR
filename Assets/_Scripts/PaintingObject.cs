@@ -7,21 +7,42 @@ using System;
 
 public class PaintingObject : MonoBehaviour
 {
-    SpriteRenderer paintingRenderer;
-    public PaintingData paintingData;
-
+    public SpriteRenderer paintingRenderer;
+    public FrameData frameData;
+    
     private void Start() {
+        
         StartCoroutine(CreateSpatialAnchor());
+        //Instantiate a blank sprite renderer
+        paintingRenderer =Instantiate(new GameObject("PaintingRenderer"), transform.position, transform.rotation).AddComponent<SpriteRenderer>();
+        
+
+        if(isLandsape()){
+            paintingRenderer.transform.localScale = new Vector3(transform.localScale.y,transform.localScale.y,1);
+        }
+        else{
+            paintingRenderer.transform.localScale = new Vector3(transform.localScale.x,transform.localScale.x,1);
+
+        }
+        paintingRenderer.transform.parent = this.transform;
+        paintingRenderer.transform.localPosition = new Vector3(paintingRenderer.transform.localPosition.x,paintingRenderer.transform.localPosition.y,paintingRenderer.transform.localPosition.z-1f);
 
 
+
+    }
+    public void Initialize( ){
+        frameData = new FrameData();
+        frameData.scale = transform.localScale;
     }
 
     public void LoadPaintingData(PaintingData data)
     {
-        paintingData = data;
+        frameData.paintingData = data;
         GetComponentInChildren<SpriteRenderer>().sprite = data.paintingSprite;
     }
-
+    public bool isLandsape(){
+        return transform.localScale.x > transform.localScale.y;
+    }
 
     private IEnumerator CreateSpatialAnchor()
     {
@@ -41,7 +62,7 @@ public class PaintingObject : MonoBehaviour
         {
             Debug.Log($"Anchor {anchor.Uuid} saved successfully.");
             //save the paintingdata with the uuid of the anchor to the playerprefs
-            PlayerPrefs.SetString(anchor.Uuid.ToString(), JsonUtility.ToJson(paintingData));
+            PlayerPrefs.SetString(anchor.Uuid.ToString(), JsonUtility.ToJson(frameData.paintingData));
             //save the uuid to the playerprefs
             PlayerPrefs.SetString("SavedAnchors", PlayerPrefs.GetString("SavedAnchors", "") + anchor.Uuid + ",");
         }
