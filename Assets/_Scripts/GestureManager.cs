@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class GestureManager : MonoBehaviour
 {
-    [SerializeField] private float gestureDelay = 1f; // Delay in seconds
-    private bool isLeftThumbsUp;
-    private bool isRightThumbsUp;
-    private bool isLeftThumbsDown;
-    private bool isRightThumbsDown;
+    [SerializeField] private float gestureDelay = 0.5f; // Delay in seconds
+    
+
+    [SerializeField] private ThumbEffect thumbEffect;
+    [SerializeField] private Transform centerEyeTransform, leftHandTransform, rightHandTransform;
+    private bool isLeftThumbsUp, isRightThumbsUp, isLeftThumbsDown, isRightThumbsDown;
 
     private Coroutine coroutine;
 
@@ -64,14 +65,18 @@ public class GestureManager : MonoBehaviour
         if (isLeftThumbsUp && isRightThumbsUp)
         {
             Debug.Log("Both Thumbs Up");
+            SpawnThumb(true, leftHandTransform);
+            SpawnThumb(true, rightHandTransform);
         }
         else if (isLeftThumbsUp)
         {
             Debug.Log("Left Thumbs Up");
+            SpawnThumb(true, leftHandTransform);
         }
         else if (isRightThumbsUp)
         {
             Debug.Log("Right Thumbs Up");
+            SpawnThumb(true, rightHandTransform);
         }
 
         coroutine = null;
@@ -85,14 +90,18 @@ public class GestureManager : MonoBehaviour
         if (isLeftThumbsDown && isRightThumbsDown)
         {
             Debug.Log("Both Thumbs Down");
+            SpawnThumb(false, leftHandTransform);
+            SpawnThumb(false, rightHandTransform);
         }
         else if (isLeftThumbsDown)
         {
             Debug.Log("Left Thumb Down");
+            SpawnThumb(false, leftHandTransform);
         }
         else if (isRightThumbsDown)
         {
             Debug.Log("Right Thumb Down");
+            SpawnThumb(false, rightHandTransform);
         }
 
         coroutine = null;
@@ -110,5 +119,11 @@ public class GestureManager : MonoBehaviour
         Debug.Log("Resetting Right Thumb Flag");
         isRightThumbsUp = false;
         isRightThumbsDown = false;
+    }
+
+    private void SpawnThumb(bool thumbsUp, Transform handTransform)
+    {
+        Quaternion adjustedRot = Quaternion.Euler(0, -handTransform.localRotation.eulerAngles.z, 0);
+        Instantiate(thumbEffect, handTransform.position, adjustedRot).Setup(thumbsUp, centerEyeTransform);
     }
 }
