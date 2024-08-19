@@ -67,31 +67,56 @@ public class GestureManager : MonoBehaviour
     private IEnumerator WaitAndCheckThumbsUpGesture()
     {
         yield return new WaitForSeconds(gestureDelay);
-        Vector3 hitPos = GetCenterRaycastToPainting();
+        Vector3 hitPos = GetRaycastToPaintingPosition();
         
         if(hitPos == Vector3.zero)
         {
             Debug.Log("UP: No Picture Detected left: " + isLeftThumbsUp + " right: " + isRightThumbsUp);
-            ResetLeftThumbFlag();
-            ResetRightThumbFlag();
-            coroutine = null;
+            Reset();
+            yield break;
+        }
+        PaintingObject paintingObject = GetRaycastPaintingObject();
+        if(paintingObject == null)
+        {
+            Debug.LogWarning("DOWN: paintingObject null, should not happen, left: " + isLeftThumbsDown + " right: " + isRightThumbsDown);
+            Reset();
             yield break;
         }
 
         if (isLeftThumbsUp && isRightThumbsUp)
         {
             Debug.Log("Both Thumbs Up");
+            if(!paintingObject.CanGiveLike(2)){
+                Debug.Log("Already liked");
+                Reset();
+                yield break;
+            }
+            paintingObject.GiveLike(2);
             SpawnThumb(true, leftHandTransform, hitPos);
             SpawnThumb(true, rightHandTransform, hitPos);
         }
         else if (isLeftThumbsUp)
         {
             Debug.Log("Left Thumbs Up");
+            if (!paintingObject.CanGiveLike(1))
+            {
+                Debug.Log("Already liked");
+                Reset();
+                yield break;
+            }
+            paintingObject.GiveLike(1);
             SpawnThumb(true, leftHandTransform, hitPos);
         }
         else if (isRightThumbsUp)
         {
             Debug.Log("Right Thumbs Up");
+            if (!paintingObject.CanGiveLike(1))
+            {
+                Debug.Log("Already liked");
+                Reset();
+                yield break;
+            }
+            paintingObject.GiveLike(1);
             SpawnThumb(true, rightHandTransform, hitPos);
         }
 
@@ -102,45 +127,63 @@ public class GestureManager : MonoBehaviour
     private IEnumerator WaitAndCheckThumbsDownGesture()
     {
         yield return new WaitForSeconds(gestureDelay);
-        Vector3 hitPos = GetCenterRaycastToPainting();
+        Vector3 hitPos = GetRaycastToPaintingPosition();
 
         if(hitPos == Vector3.zero)
         {
             Debug.Log("DOWN: No Picture Detected, left: " + isLeftThumbsDown + " right: " + isRightThumbsDown);
-            ResetLeftThumbFlag();
-            ResetRightThumbFlag();
-            coroutine = null;
+            Reset();
+            yield break;
+        }
+        PaintingObject paintingObject = GetRaycastPaintingObject();
+        if(paintingObject == null)
+        {
+            Debug.LogWarning("DOWN: paintingObject null, should not happen, left: " + isLeftThumbsDown + " right: " + isRightThumbsDown);
+            Reset();
             yield break;
         }
 
         if (isLeftThumbsDown && isRightThumbsDown)
         {
             Debug.Log("Both Thumbs Down");
+            if(!paintingObject.CanGiveLike(-2)){
+                Debug.Log("Already disliked");
+                Reset();
+                yield break;
+            }
+            paintingObject.GiveLike(-2);
             SpawnThumb(false, leftHandTransform, hitPos);
             SpawnThumb(false, rightHandTransform, hitPos);
         }
         else if (isLeftThumbsDown)
         {
             Debug.Log("Left Thumb Down");
+            if (!paintingObject.CanGiveLike(-1))
+            {
+                Debug.Log("Already disliked");
+                Reset();
+                yield break;
+            }
+            paintingObject.GiveLike(-1);
             SpawnThumb(false, leftHandTransform, hitPos);
         }
         else if (isRightThumbsDown)
         {
             Debug.Log("Right Thumb Down");
+            if (!paintingObject.CanGiveLike(-1))
+            {
+                Debug.Log("Already disliked");
+                Reset();
+                yield break;
+            }
+            paintingObject.GiveLike(-1);
             SpawnThumb(false, rightHandTransform, hitPos);
         }
 
         coroutine = null;
     }
 
-    public void ResetLeftThumbFlag()
-    {
-        Debug.Log("Resetting Left Thumb Flag");
-        isLeftThumbsUp = false;
-        isLeftThumbsDown = false;
-    }
-
-    private Vector3 GetCenterRaycastToPainting()
+    private Vector3 GetRaycastToPaintingPosition()
     {
         if(Physics.Raycast(centerEyeTransform.position, centerEyeTransform.forward, out RaycastHit hit, pictureRaycast, paintingLayer))
         {
@@ -150,6 +193,17 @@ public class GestureManager : MonoBehaviour
         return Vector3.zero;
     }
 
+    private PaintingObject GetRaycastPaintingObject()
+    {
+        if (Physics.Raycast(centerEyeTransform.position, centerEyeTransform.forward, out RaycastHit hit, pictureRaycast, paintingLayer))
+        {
+            if (hit.collider.CompareTag("Painting"))
+                return hit.collider.GetComponent<PaintingObject>();
+        }
+        return null;
+    }
+
+    //also gets called when we stop the motion
     public void ResetRightThumbFlag()
     {
         Debug.Log("Resetting Right Thumb Flag");
@@ -157,9 +211,24 @@ public class GestureManager : MonoBehaviour
         isRightThumbsDown = false;
     }
 
+    //also gets called when we stop the motion
+    public void ResetLeftThumbFlag()
+    {
+        Debug.Log("Resetting Left Thumb Flag");
+        isLeftThumbsUp = false;
+        isLeftThumbsDown = false;
+    }
+
     private void SpawnThumb(bool thumbsUp, Transform handTransform, Vector3 targetPos)
     {
         Quaternion adjustedRot = Quaternion.Euler(0, -handTransform.localRotation.eulerAngles.z, 0);
         Instantiate(thumbEffect, handTransform.position, adjustedRot).Setup(thumbsUp, targetPos);
+    }
+
+    private void Reset()
+    {
+        ResetLeftThumbFlag();
+        ResetRightThumbFlag();
+        coroutine = null;
     }
 }

@@ -13,9 +13,10 @@ public class FrameManager : MonoBehaviour {
       // This reusable buffer helps reduce pressure on the garbage collector
     List<OVRSpatialAnchor.UnboundAnchor> _unboundAnchors = new();
 
-    public List<PaintingData> paintings = new List<PaintingData>();
-    List<PaintingData> pickedPaintings = new List<PaintingData>();
-    public List<PaintingObject> frames = new List<PaintingObject>();
+    public List<PaintingData> paintings = new();
+    List<PaintingData> pickedPaintings = new();
+    public List<PaintingObject> frames = new();
+    private Dictionary<PaintingTag, int> tagsLikeCounter = new();
 
     public static FrameManager Instance;
 
@@ -34,6 +35,11 @@ public class FrameManager : MonoBehaviour {
         }
         Instance = this;
         StartCoroutine(PickNewPaintingsRoutine());
+
+        //initialize the like counter
+        foreach(PaintingTag tag in Enum.GetValues(typeof(PaintingTag))){
+            tagsLikeCounter.Add(tag, 0);
+        }
     }
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Space)){
@@ -81,6 +87,7 @@ public class FrameManager : MonoBehaviour {
     }
 
     public void PickNewPaintings(){
+        Debug.Log("Picking new paintings");
         
         pickedPaintings = new List<PaintingData>();
         
@@ -97,6 +104,15 @@ public class FrameManager : MonoBehaviour {
             frame.frameData.paintingData = pickedPainting;
             pickedPaintings.Add(pickedPainting);
             frame.LoadPaintingData(pickedPainting);
+    }
+
+    public void GiveLikes(PaintingTag[] tags, int value)
+    {
+        foreach (PaintingTag tag in tags)
+        {
+            tagsLikeCounter[tag] += value;
+            Debug.Log("Giving likes to " + tag + " with value " + value + " is now " + tagsLikeCounter[tag]);
+        }
     }
        
 

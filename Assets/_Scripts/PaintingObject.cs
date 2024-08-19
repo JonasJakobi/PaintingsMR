@@ -11,6 +11,9 @@ public class PaintingObject : MonoBehaviour
     public SpriteRenderer paintingRenderer;
     public FrameData frameData;
 
+    //-2: 2 dislikes, -1: 1 dislike, 1: 1 like, 2: 2 likes
+    private int prevLikeValue = 0;
+
     
     private void Start() {
         
@@ -48,6 +51,7 @@ public class PaintingObject : MonoBehaviour
 
     public void LoadPaintingData(PaintingData data)
     {
+        prevLikeValue = 0;
         var rend = GetComponentInChildren<SpriteRenderer>();
         float initialdelay = 0.8f;
         if(rend.sprite == null){
@@ -63,6 +67,27 @@ public class PaintingObject : MonoBehaviour
     public bool isLandsape(){
         return transform.localScale.x > transform.localScale.y;
     }
+
+    public bool CanGiveLike(int likeValue)
+    {
+        return likeValue != prevLikeValue;
+    }
+
+    public void GiveLike(int likeValue){
+        //nothing changed, should've been checked before
+        if(likeValue == prevLikeValue){
+            Debug.LogWarning("Trying to give like that was already given for value " + likeValue);
+            return;
+        }
+        //reset previous like value
+        if(prevLikeValue != 0){
+            Debug.Log("Removing previous like value " + prevLikeValue);
+        }
+        int likeAdjusted = -prevLikeValue + likeValue;
+        FrameManager.Instance.GiveLikes(frameData.paintingData.tags, likeAdjusted);
+        prevLikeValue = likeValue;
+    }
+
 
 
 
