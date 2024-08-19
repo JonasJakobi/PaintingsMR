@@ -9,12 +9,16 @@ public class PaintingObject : MonoBehaviour
 {
     public SpriteRenderer paintingRenderer;
     public FrameData frameData;
+
     
     private void Start() {
         
         StartCoroutine(CreateSpatialAnchor());
-        //Instantiate a blank sprite renderer
-        paintingRenderer =Instantiate(new GameObject("PaintingRenderer"), transform.position, transform.rotation).AddComponent<SpriteRenderer>();
+        //Instantiate a blank gameobject
+
+        paintingRenderer =new GameObject("Painting Renderer").AddComponent<SpriteRenderer>();
+        paintingRenderer.transform.position = this.transform.position;
+        paintingRenderer.transform.rotation = this.transform.rotation;
         
 
         if(isLandsape()){

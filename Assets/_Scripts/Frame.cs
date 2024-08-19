@@ -8,7 +8,8 @@ public class Frame : MonoBehaviour {
     public GameObject framePartPrefab;
     public GameObject bgPrefab;
     public float offset = 0.02f;
-
+    public float minSize = 0.1f;
+    public float maxRatioDifference = 2f;
 
     GameObject framePart1;
     GameObject framePart2;
@@ -26,7 +27,7 @@ public class Frame : MonoBehaviour {
     private void Start() {
         //create a frame
         InitializeFrames();
-        UpdateFrames(new Vector3(0,0,0), new Vector3(5,3,5));
+        UpdateFrames(new Vector3(0,0,0), new Vector3(2,5,5));
         FinishFrame();
         //Find gameobject with name Hand_IndexTip in usingHand child
         indexTip = usingHand.transform.FindChildRecursive("Hand_IndexTip");
@@ -58,7 +59,18 @@ public class Frame : MonoBehaviour {
 
     
     public void FinishFrame(){
+        
+        framePart1.transform.parent = bg.transform;
+        framePart2.transform.parent = bg.transform;
+        framePart3.transform.parent = bg.transform;
+        framePart4.transform.parent = bg.transform;
         isPlacing = false;
+        if(bg.transform.localScale.x + bg.transform.localScale.y < minSize){
+            Destroy(bg.gameObject);
+        }//else if the ratio between x scale and y scale is bigger than 
+        else if(bg.transform.localScale.x / bg.transform.localScale.y > maxRatioDifference || bg.transform.localScale.y / bg.transform.localScale.x > maxRatioDifference){
+            Destroy(bg.gameObject);
+        }
         var obj = bg.AddComponent<PaintingObject>();
         obj.Initialize();
     }

@@ -1531,6 +1531,8 @@ MonoBehaviour:
   framePartPrefab: {fileID: 6440079647784447490, guid: 0ce26ec56bfeb3c4cac047fbcd7c4c56, type: 3}
   bgPrefab: {fileID: 6440079647784447490, guid: ba31d2aecff04eb4fafc4fe39aabb586, type: 3}
   offset: 0.02
+  minSize: 0.2
+  maxRatioDifference: 2
   usingHand: {fileID: 368066933}
   startPos: {x: 0, y: 0, z: 0}
   indexTip: {fileID: 0}
