@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79684307e63048489415ff1b4c85ee7, type: 3}
+  m_Name: Halt In The Desert
+  m_EditorClassIdentifier: 
+  paintingSprite: {fileID: 21300000, guid: e51d33d9af42d574899912e2aa9266b9, type: 3}
+  artist: Auguste Veillon
+  title: Halt In The Desert
+  description: A group of travelers and their camels are depicted in a desert scene
+    at dusk, with one camel sitting and the other standing loaded with supplies.
+    Dressed in traditional attire, the individuals are seemingly engaged in a rest
+    stop, as one person draws water from a well and others wait or converse. The
+    setting sun casts a warm light over the expansive horizon, emphasizing the vastness
+    of the landscape surrounding them.
+  yearMade: 2021
+  tags: 080000001300000014000000
+  isLandsape: 1

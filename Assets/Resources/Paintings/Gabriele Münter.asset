@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79684307e63048489415ff1b4c85ee7, type: 3}
+  m_Name: "Gabriele M\xFCnter"
+  m_EditorClassIdentifier: 
+  paintingSprite: {fileID: 21300000, guid: 7822ecc3e5ae83c4bb4e1f0c7daf64bc, type: 3}
+  artist: "Gabriele M\xFCnter "
+  title: "Kallm\xFCnz"
+  description: 
+  yearMade: 1903
+  tags: 0800000000000000
+  isLandsape: 1

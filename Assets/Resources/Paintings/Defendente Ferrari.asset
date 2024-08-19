@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79684307e63048489415ff1b4c85ee7, type: 3}
+  m_Name: Defendente Ferrari
+  m_EditorClassIdentifier: 
+  paintingSprite: {fileID: 21300000, guid: a1b74b45a5cf3cd43924225720813d46, type: 3}
+  artist: Defendente Ferrari
+  title: Adoration of the Magi
+  description: 'The Adoration of the Magi or Adoration of the Kings or Visitation
+    of the Wise Men is the name traditionally given to the subject in the Nativity
+    of Jesus in art in which the three Magi, represented as kings, especially in
+    the West, having found Jesus by following a star, lay before him gifts of gold,
+    frankincense, and myrrh, and worship him. '
+  yearMade: 1520
+  tags: 020000000300000006000000
+  isLandsape: 0
