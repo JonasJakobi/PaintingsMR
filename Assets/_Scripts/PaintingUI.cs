@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class AddCameraToCanvas : MonoBehaviour
+using TMPro;
+public class PaintingUI : MonoBehaviour
 {
     public PaintingObject frame;
     // Start is called before the first frame update
+
+    public TextMeshProUGUI title;
+    public TextMeshProUGUI author;
+    public TextMeshProUGUI year;
+    public TextMeshProUGUI description;
+
     void Start()
     {
         GetComponent<Canvas>().worldCamera = GameObject.Find("CenterEyeAnchor").GetComponent<Camera>();
@@ -20,15 +26,20 @@ public class AddCameraToCanvas : MonoBehaviour
             }
             parent = parent.parent;
         }
+        frame.GetComponent<PaintingObject>().RegisterUI(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 
     public void DeleteFrame(){
         frame.OnEraseButtonPressed();
+    }
+
+    public void SetNewPainting(PaintingData data){
+        title.text = "<b> Title: </b>" +  data.title;
+        author.text = "<b> Author: </b>" + data.artist;
+        year.text = "<b> Year: </b>" + data.yearMade;
+        description.text = "<b> Description: </b>" + data.description;
+
     }
 }

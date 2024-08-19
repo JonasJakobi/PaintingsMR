@@ -36,6 +36,7 @@ public class Frame : MonoBehaviour {
     public float timeSincePinching = 0f;
     public float pinchGraceTime = 0.07f;
     public float startPlacingTime = 1f;
+
     private void Start() {
         Instance = this;
         //create a frame
@@ -164,6 +165,8 @@ public class Frame : MonoBehaviour {
        // ui.transform.localPosition = new Vector3(0,0,0);
         //TODO populate data
     }
+
+   
 
     public Vector3 GetClosestMRUK(Vector3 point){
         

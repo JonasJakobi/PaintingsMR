@@ -2172,3 +2172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frame: {fileID: 0}
+  title: {fileID: 8883052316036489056}
+  author: {fileID: 3519381739199624533}
+  year: {fileID: 552182434134702553}
+  description: {fileID: 2458102875023570943}
