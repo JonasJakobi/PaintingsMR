@@ -26,7 +26,7 @@ public class Frame : MonoBehaviour {
     bool isPlacing = false;
 
     public GameObject objectToMove;
-    public bool movingIsOn;
+    public bool movingIsOn = false;
 
 
 
@@ -52,7 +52,10 @@ public class Frame : MonoBehaviour {
         }
 
         PlacementInputs();
-        MovingInputs();
+        if(movingIsOn){
+            MovingInputs();
+        }
+        
     }
     public void SetObjectToMove(GameObject obj){
         objectToMove = obj;
@@ -90,7 +93,8 @@ public class Frame : MonoBehaviour {
                 if(timeSinceNotPinching > pinchGraceTime){
                     timeSincePinching = 0f;
                     //end placing
-                    FinishFrame(startPos, ClosestWallPos(indexTip.position));
+                    FinishFrame();
+                    HaveFrameBePaintingObject(startPos, ClosestWallPos(indexTip.position));
                 }
                 else{
                     timeSinceNotPinching += Time.deltaTime;
@@ -110,7 +114,7 @@ public class Frame : MonoBehaviour {
     }
 
     
-    public PaintingObject FinishFrame(Vector3 startPos, Vector3 endPos, bool needsAnchor = true){
+    public void FinishFrame(){
         
         framePart1.transform.SetParent(bg.transform);
         framePart2.transform.SetParent(bg.transform);
@@ -119,12 +123,15 @@ public class Frame : MonoBehaviour {
         isPlacing = false;
         if(bg.transform.localScale.x + bg.transform.localScale.y < minSize){
             Destroy(bg.gameObject);
-            return null;
+            return;
         }//else if the ratio between x scale and y scale is bigger than 
         else if(bg.transform.localScale.x / bg.transform.localScale.y > maxRatioDifference || bg.transform.localScale.y / bg.transform.localScale.x > maxRatioDifference){
             Destroy(bg.gameObject);
-            return null;
+            return;
         }
+        
+    }
+    public PaintingObject HaveFrameBePaintingObject(Vector3 startPos, Vector3 endPos, bool needsAnchor = true){
         var obj = bg.AddComponent<PaintingObject>();
         obj.Initialize();
         obj.SetStartAndEndPointWhenFinishingCreation(startPos, endPos);

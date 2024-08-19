@@ -113,6 +113,7 @@ public class PaintingObject : MonoBehaviour
 
     public async void OnEraseButtonPressed()
     {
+        FrameManager.Instance.frames.Remove(this);
         PlayerPrefs.DeleteKey(GetComponent<OVRSpatialAnchor>().Uuid.ToString());
         PlayerPrefs.SetString("SavedAnchors", PlayerPrefs.GetString("SavedAnchors", "").Replace(GetComponent<OVRSpatialAnchor>().Uuid.ToString() + ",", ""));
         var result = await GetComponent<OVRSpatialAnchor>().EraseAnchorAsync();

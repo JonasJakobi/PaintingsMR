@@ -44,6 +44,10 @@ public class FrameManager : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.L)){
             StartLoadingAnchors();
         }
+
+        if(Input.GetKeyDown(KeyCode.R)){
+            FindObjectsOfType<PaintingObject>().ToList().ForEach(p => p.OnEraseButtonPressed());
+        }
     }
     public void StartLoadingAnchors(){
         //get all keys currently saved in playerprefs
@@ -130,7 +134,8 @@ public class FrameManager : MonoBehaviour {
                         FrameData frameData = JsonUtility.FromJson<FrameData>(PlayerPrefs.GetString(unboundAnchor.Uuid.ToString()));
                         Frame.Instance.InitializeFrames();
                         Frame.Instance.UpdateFrames(frameData.startPosAtCreation, frameData.endPosAtCreation);
-                        var frame = Frame.Instance.FinishFrame(frameData.startPosAtCreation, frameData.endPosAtCreation, false);
+                        Frame.Instance.FinishFrame();
+                        var frame = Frame.Instance.HaveFrameBePaintingObject(frameData.startPosAtCreation, frameData.endPosAtCreation, false);
                         frame.transform.SetParent(spatialAnchor.transform);
                         frame.transform.localPosition = frameData.offsetFromSpatialAnchor;
                         frames.Add(frame);
