@@ -146,9 +146,9 @@ public class Frame : MonoBehaviour {
         }
         InitPaintingUI( obj);
         bg = obj.gameObject;
-        //var scale = bg.transform.localScale;
-        //bg.transform.localScale = new Vector3(0, 0, 0);
-       // bg.transform.DOScale(scale, 1f).SetEase(Ease.OutBack);
+        var scale = bg.transform.localScale;
+        bg.transform.localScale = new Vector3(0, 0, 0);
+        bg.transform.DOScale(scale, 1f).SetEase(Ease.OutBack);
 
         
 
