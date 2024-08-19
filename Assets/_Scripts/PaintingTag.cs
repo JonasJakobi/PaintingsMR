@@ -7,6 +7,14 @@ public enum PaintingTag
     Expressionism,
     Cubism,
     Surrealism,
+
+    Relegious,
+    Mythological,
+    Historical,
+    Political,
+    Social,
+    Personal,
+
     Landscape,
     Portrait,
     StillLife,
@@ -18,5 +26,6 @@ public enum PaintingTag
     Mysterious,
     Colorful,
     NotColorful
+
     // Add more tags as needed
 }
