@@ -31,7 +31,9 @@ public class Frame : MonoBehaviour {
 
 
     public float timeSinceNotPinching = 0f;
-    public float pinchGraceTime = 0.1f;
+    public float timeSincePinching = 0f;
+    public float pinchGraceTime = 0.07f;
+    public float startPlacingTime = 2f;
     private void Start() {
         Instance = this;
         //create a frame
@@ -63,25 +65,32 @@ public class Frame : MonoBehaviour {
 
     private void MovingInputs(){
         if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Index)){
-            bg.transform.position = ClosestWallPos(indexTip.position);
+            objectToMove.transform.position = ClosestWallPos(indexTip.position);
+            bg.GetComponent<PaintingObject>().frameData.offsetFromSpatialAnchor = bg.transform.localPosition;
         }
     }
     private void PlacementInputs(){
         
-        if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Middle)){
+        if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Index)){
+            timeSincePinching += Time.deltaTime;
             timeSinceNotPinching = 0f;
+            if(timeSincePinching < startPlacingTime){ // we stop here
+                return;
+            }
             if(!isPlacing){//start placing
                 startPos = ClosestWallPos(indexTip.position);
                 InitializeFrames();
             }//update the frame
             isPlacing = true;
             UpdateFrames(startPos, ClosestWallPos(indexTip.position));
+            
         }
         else{
             if(isPlacing ){//Account for very short breaks in pinching for better placement
                 if(timeSinceNotPinching > pinchGraceTime){
+                    timeSincePinching = 0f;
                     //end placing
-                    FinishFrame();
+                    FinishFrame(startPos, ClosestWallPos(indexTip.position));
                 }
                 else{
                     timeSinceNotPinching += Time.deltaTime;
@@ -101,23 +110,28 @@ public class Frame : MonoBehaviour {
     }
 
     
-    public void FinishFrame(){
+    public PaintingObject FinishFrame(Vector3 startPos, Vector3 endPos, bool needsAnchor = true){
         
-        framePart1.transform.parent = bg.transform;
-        framePart2.transform.parent = bg.transform;
-        framePart3.transform.parent = bg.transform;
-        framePart4.transform.parent = bg.transform;
+        framePart1.transform.SetParent(bg.transform);
+        framePart2.transform.SetParent(bg.transform);
+        framePart3.transform.SetParent(bg.transform);
+        framePart4.transform.SetParent(bg.transform);
         isPlacing = false;
         if(bg.transform.localScale.x + bg.transform.localScale.y < minSize){
             Destroy(bg.gameObject);
-            return;
+            return null;
         }//else if the ratio between x scale and y scale is bigger than 
         else if(bg.transform.localScale.x / bg.transform.localScale.y > maxRatioDifference || bg.transform.localScale.y / bg.transform.localScale.x > maxRatioDifference){
             Destroy(bg.gameObject);
-            return;
+            return null;
         }
         var obj = bg.AddComponent<PaintingObject>();
         obj.Initialize();
+        obj.SetStartAndEndPointWhenFinishingCreation(startPos, endPos);
+        if(needsAnchor){
+            StartCoroutine(obj.CreateSpatialAnchor());
+        }
+        return obj;
     }
 
     public Vector3 GetClosestMRUK(Vector3 point){
@@ -170,7 +184,7 @@ public class Frame : MonoBehaviour {
     
         bg.transform.rotation = Quaternion.LookRotation(surfaceNormal, Vector3.up);
         bg.transform.position = new Vector3((startPos.x + endPos.x) / 2, (startPos.y + endPos.y) / 2, (startPos.z + endPos.z) / 2);
-        bg.transform.localScale = new Vector3(offset / 2 + Mathf.Sqrt(Mathf.Abs(startPos.x - endPos.x) * Mathf.Abs(startPos.x - endPos.x) + Mathf.Abs(startPos.z - endPos.z) * Mathf.Abs(startPos.z - endPos.z)), Mathf.Abs(endPos.y - startPos.y) - 0.01f, 0.01f);
+        bg.transform.localScale = new Vector3(Mathf.Sqrt(Mathf.Abs(startPos.x - endPos.x) * Mathf.Abs(startPos.x - endPos.x) + Mathf.Abs(startPos.z - endPos.z) * Mathf.Abs(startPos.z - endPos.z)) - offset/2, Mathf.Abs(endPos.y - startPos.y) - offset/2, 0.01f);
         
     }   
 

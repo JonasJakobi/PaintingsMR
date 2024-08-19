@@ -34,9 +34,18 @@ public class FrameManager : MonoBehaviour {
         }
         Instance = this;
         StartCoroutine(PickNewPaintingsRoutine());
-
-        //----------------------------RETURNING RN, NO SPATIAL ANCHORS YET -------->
-        return;
+    }
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.Space)){
+            foreach(var frame in frames){
+                frame.OnSaveButtonPressed();
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.L)){
+            StartLoadingAnchors();
+        }
+    }
+    public void StartLoadingAnchors(){
         //get all keys currently saved in playerprefs
         var keys = PlayerPrefs.GetString("SavedAnchors", "").Split(',');
         if(keys.Length > 0)
@@ -52,8 +61,6 @@ public class FrameManager : MonoBehaviour {
             }
             LoadAnchorsByUuid(uuids);
         }
-        
-
     }
 
     public void RegisterNewFrame(PaintingObject obj){
@@ -121,9 +128,12 @@ public class FrameManager : MonoBehaviour {
                         // transform component immediately.
                         unboundAnchor.BindTo(spatialAnchor);
                         FrameData frameData = JsonUtility.FromJson<FrameData>(PlayerPrefs.GetString(unboundAnchor.Uuid.ToString()));
-                        spatialAnchor.AddComponent<PaintingObject>().LoadPaintingData(frameData.paintingData);
-                        spatialAnchor.transform.localScale = frameData.scale;
-                        frames.Add(spatialAnchor.GetComponent<PaintingObject>());
+                        Frame.Instance.InitializeFrames();
+                        Frame.Instance.UpdateFrames(frameData.startPosAtCreation, frameData.endPosAtCreation);
+                        var frame = Frame.Instance.FinishFrame(frameData.startPosAtCreation, frameData.endPosAtCreation, false);
+                        frame.transform.SetParent(spatialAnchor.transform);
+                        frame.transform.localPosition = frameData.offsetFromSpatialAnchor;
+                        frames.Add(frame);
                     }
                     else
                     {
