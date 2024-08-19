@@ -11,11 +11,13 @@ public class PaintingData : ScriptableObject
     //List of tags
     public PaintingTag[] tags;
 
+    public bool isLandsape;
+
     //SMall comments
     
 }
 
-public class FrameData : ScriptableObject
+public class FrameData 
 {
     public Vector3 scale;
     public PaintingData paintingData;

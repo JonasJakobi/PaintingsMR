@@ -3,26 +3,76 @@ using OVR;
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using DG.Tweening;
 
 
 public class PaintingObject : MonoBehaviour
 {
-    SpriteRenderer paintingRenderer;
-    public PaintingData paintingData;
+    public SpriteRenderer paintingRenderer;
+    public FrameData frameData;
 
+    
     private void Start() {
-        StartCoroutine(CreateSpatialAnchor());
+        
+        //StartCoroutine(CreateSpatialAnchor());
+        //Instantiate a blank gameobject
+
+        paintingRenderer =new GameObject("Painting Renderer").AddComponent<SpriteRenderer>();
+        paintingRenderer.transform.position = this.transform.position;
+        paintingRenderer.transform.rotation = this.transform.rotation;
+        
+
+        if(isLandsape()){
+            paintingRenderer.transform.localScale = new Vector3(transform.localScale.y,transform.localScale.y,1);
+        }
+        else{
+            paintingRenderer.transform.localScale = new Vector3(transform.localScale.x,transform.localScale.x,1);
+
+        }
+        paintingRenderer.transform.parent = this.transform;
+        paintingRenderer.transform.localPosition = new Vector3(paintingRenderer.transform.localPosition.x,paintingRenderer.transform.localPosition.y,paintingRenderer.transform.localPosition.z-1f);
+
+        FrameManager.Instance.RegisterNewFrame(this);
 
 
+    }
+    public void Initialize( ){
+        frameData = new FrameData();
+        frameData.scale = transform.localScale;
     }
 
     public void LoadPaintingData(PaintingData data)
     {
-        paintingData = data;
-        GetComponentInChildren<SpriteRenderer>().sprite = data.paintingSprite;
+        var rend = GetComponentInChildren<SpriteRenderer>();
+        float initialdelay = 0.5f;
+        if(rend.sprite == null){
+            initialdelay = 0;
+        }
+        //DO fade to transparent, change sprite, fade back to visible
+        rend.DOColor(new Color(1,1,1,0), initialdelay).OnComplete(() => {
+            frameData.paintingData = data;
+            rend.sprite = data.paintingSprite;
+            rend.DOColor(new Color(1,1,1,1), 0.5f);
+        });
+    }
+    public bool isLandsape(){
+        return transform.localScale.x > transform.localScale.y;
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+    //---------------Spatial Anchor Stuff -----------
     private IEnumerator CreateSpatialAnchor()
     {
         var anchor = gameObject.AddComponent<OVRSpatialAnchor>();
@@ -41,7 +91,7 @@ public class PaintingObject : MonoBehaviour
         {
             Debug.Log($"Anchor {anchor.Uuid} saved successfully.");
             //save the paintingdata with the uuid of the anchor to the playerprefs
-            PlayerPrefs.SetString(anchor.Uuid.ToString(), JsonUtility.ToJson(paintingData));
+            PlayerPrefs.SetString(anchor.Uuid.ToString(), JsonUtility.ToJson(frameData.paintingData));
             //save the uuid to the playerprefs
             PlayerPrefs.SetString("SavedAnchors", PlayerPrefs.GetString("SavedAnchors", "") + anchor.Uuid + ",");
         }
