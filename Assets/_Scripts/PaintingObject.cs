@@ -49,6 +49,20 @@ public class PaintingObject : MonoBehaviour
         return transform.localScale.x > transform.localScale.y;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //---------------Spatial Anchor Stuff -----------
     private IEnumerator CreateSpatialAnchor()
     {
         var anchor = gameObject.AddComponent<OVRSpatialAnchor>();

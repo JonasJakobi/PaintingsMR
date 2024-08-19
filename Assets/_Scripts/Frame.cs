@@ -1,7 +1,7 @@
 using UnityEngine;
 using Meta.XR.MRUtilityKit;
 using OVR;
-
+using System.Collections.Generic;
 public class Frame : MonoBehaviour {
 
     
@@ -47,11 +47,11 @@ public class Frame : MonoBehaviour {
         if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Index)){
             timeSinceNotPinching = 0f;
             if(!isPlacing){//start placing
-                startPos = indexTip.position;
+                startPos = ClosestWallPos(indexTip.position);
                 InitializeFrames();
             }//update the frame
             isPlacing = true;
-            UpdateFrames(startPos, indexTip.position);
+            UpdateFrames(startPos, ClosestWallPos(indexTip.position));
         }
         else{
             if(isPlacing ){//Account for very short breaks in pinching for better placement
@@ -67,6 +67,24 @@ public class Frame : MonoBehaviour {
 
             }
         }
+    }
+
+    public Vector3 ClosestWallPos(Vector3 pos){
+        
+        LabelFilter filter = LabelFilter.Included(MRUKAnchor.SceneLabels.WALL_FACE);
+        Debug.Log("lable of filter" + filter);
+        Debug.Log("pos" + pos);
+        Debug.Log("MRUK" + MRUK.Instance);
+        if(MRUK.Instance.GetCurrentRoom() == null){
+            Debug.Log("no room");
+        }
+        Debug.Log("TryGetClosestSurfacePosition" + MRUK.Instance.GetCurrentRoom().TryGetClosestSurfacePosition(pos, out Vector3 output,out MRUKAnchor anchor, filter));
+        //MRUK.Instance.GetCurrentRoom().TryGetClosestSurfacePosition(pos, out Vector3 output,out MRUKAnchor anchor1 , filter);
+       Debug.Log(output);
+        return output;
+        
+        Debug.Log("MRUK - GetCurrentRoom" + MRUK.Instance.GetCurrentRoom());
+        return pos;
     }
 
     

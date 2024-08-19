@@ -5,6 +5,8 @@ using System.Collections;
 using System;
 using System.Linq;
 using Unity.VisualScripting;
+//MRUK
+using Meta.XR.MRUtilityKit;
 
 
 public class FrameManager : MonoBehaviour {
@@ -33,7 +35,7 @@ public class FrameManager : MonoBehaviour {
         Instance = this;
         StartCoroutine(PickNewPaintingsRoutine());
 
-        //----------------------------RETURNING RN -------->
+        //----------------------------RETURNING RN, NO SPATIAL ANCHORS YET -------->
         return;
         //get all keys currently saved in playerprefs
         var keys = PlayerPrefs.GetString("SavedAnchors", "").Split(',');
@@ -87,6 +89,12 @@ public class FrameManager : MonoBehaviour {
     }
        
 
+
+
+
+
+
+    //SPATIAL ANCHOR STUFF - ------
     async void LoadAnchorsByUuid(IEnumerable<Guid> uuids)
     {
         // Step 1: Load
