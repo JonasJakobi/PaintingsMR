@@ -71,7 +71,7 @@ public class GestureManager : MonoBehaviour
         
         if(hitPos == Vector3.zero)
         {
-            Debug.Log("No Picture Detected");
+            Debug.Log("UP: No Picture Detected left: " + isLeftThumbsUp + " right: " + isRightThumbsUp);
             ResetLeftThumbFlag();
             ResetRightThumbFlag();
             coroutine = null;
@@ -106,7 +106,7 @@ public class GestureManager : MonoBehaviour
 
         if(hitPos == Vector3.zero)
         {
-            Debug.Log("No Picture Detected");
+            Debug.Log("DOWN: No Picture Detected, left: " + isLeftThumbsDown + " right: " + isRightThumbsDown);
             ResetLeftThumbFlag();
             ResetRightThumbFlag();
             coroutine = null;

@@ -47,7 +47,7 @@ public class Frame : MonoBehaviour {
 
     private void Update() {
         if(indexTip == null){
-            Debug.Log("no index yet");
+            //Debug.Log("no index yet");
             indexTip = usingHand.transform.FindChildRecursive("Hand_IndexTip");
             return;
         }
