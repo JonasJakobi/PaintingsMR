@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79684307e63048489415ff1b4c85ee7, type: 3}
   m_Name: Rudolf Ernst
   m_EditorClassIdentifier: 
-  paintingSprite: {fileID: 0}
+  paintingSprite: {fileID: 21300000, guid: 56e05553a6a9eb74c9c43b6845e32d84, type: 3}
   artist: 'Rudolf Ernst '
   title: An Afternoon Show
   description: An Afternoon Show
