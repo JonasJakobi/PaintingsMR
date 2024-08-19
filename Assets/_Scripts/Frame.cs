@@ -8,6 +8,7 @@ public class Frame : MonoBehaviour {
     
     public GameObject framePartPrefab;
     public GameObject bgPrefab;
+    public GameObject uiPrefab;
     public float offset = 0.02f;
     public float minSize = 0.1f;
     public float maxRatioDifference = 2f;
@@ -147,8 +148,19 @@ public class Frame : MonoBehaviour {
         var scale = bg.transform.localScale;
         bg.transform.localScale = new Vector3(0, 0, 0);
         bg.transform.DOScale(scale, 1f).SetEase(Ease.OutBack);
+
+        InitPaintingUI( obj);
+
         return obj;
         
+    }
+
+    public void InitPaintingUI(PaintingObject obj){
+        //init the ui , then change its position 
+        var ui = Instantiate(uiPrefab, new Vector3(0,0,0), Quaternion.identity);
+        ui.transform.SetParent(obj.transform.FindChildRecursive("UISpot"));
+        ui.transform.localPosition = new Vector3(0,0,0);
+        //TODO populate data
     }
 
     public Vector3 GetClosestMRUK(Vector3 point){
