@@ -114,7 +114,14 @@ public class PaintingObject : MonoBehaviour
 
     public async void OnEraseButtonPressed()
     {
+        Debug.Log("Erasing anchor");
         FrameManager.Instance.frames.Remove(this);
+        //disable all children adn this renderer
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        GetComponent<MeshRenderer>().enabled = false;
         PlayerPrefs.DeleteKey(transform.parent.GetComponent<OVRSpatialAnchor>().Uuid.ToString());
         PlayerPrefs.SetString("SavedAnchors", PlayerPrefs.GetString("SavedAnchors", "").Replace(transform.parent.GetComponent<OVRSpatialAnchor>().Uuid.ToString() + ",", ""));
         var result = await transform.parent.GetComponent<OVRSpatialAnchor>().EraseAnchorAsync();

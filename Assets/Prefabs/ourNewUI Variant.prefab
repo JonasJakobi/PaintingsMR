@@ -883,7 +883,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5914465503298550931}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 655651816669145554}
+        m_TargetAssemblyTypeName: AddCameraToCanvas, Assembly-CSharp
+        m_MethodName: DeleteFrame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &7791865422804168866
 Animator:
   serializedVersion: 5
@@ -1087,11 +1099,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9890159
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.14780942
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1103,7 +1115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1232,6 +1244,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7114770130731238586, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4055749174308322370}
+    - targetCorrespondingSourceObject: {fileID: 7114770130731238586, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 655651816669145554}
   m_SourcePrefab: {fileID: 100100000, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
 --- !u!224 &2978774233723909234 stripped
 RectTransform:
@@ -1288,3 +1303,15 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &655651816669145554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2978774233723909243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299132ad242f77147977aebf5d82f855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

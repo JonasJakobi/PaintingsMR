@@ -144,12 +144,13 @@ public class Frame : MonoBehaviour {
         if(needsAnchor){
             StartCoroutine(obj.CreateSpatialAnchor());
         }
-        bg = obj.gameObject;
-        var scale = bg.transform.localScale;
-        bg.transform.localScale = new Vector3(0, 0, 0);
-        bg.transform.DOScale(scale, 1f).SetEase(Ease.OutBack);
-
         InitPaintingUI( obj);
+        bg = obj.gameObject;
+        //var scale = bg.transform.localScale;
+        //bg.transform.localScale = new Vector3(0, 0, 0);
+       // bg.transform.DOScale(scale, 1f).SetEase(Ease.OutBack);
+
+        
 
         return obj;
         
@@ -157,9 +158,10 @@ public class Frame : MonoBehaviour {
 
     public void InitPaintingUI(PaintingObject obj){
         //init the ui , then change its position 
-        var ui = Instantiate(uiPrefab, new Vector3(0,0,0), Quaternion.identity);
-        ui.transform.SetParent(obj.transform.FindChildRecursive("UISpot"));
-        ui.transform.localPosition = new Vector3(0,0,0);
+        Transform uispot = obj.transform.FindChildRecursive("UISpot");
+        var ui = Instantiate(uiPrefab, uispot.position, uispot.rotation);
+        ui.transform.parent = uispot;
+       // ui.transform.localPosition = new Vector3(0,0,0);
         //TODO populate data
     }
 
