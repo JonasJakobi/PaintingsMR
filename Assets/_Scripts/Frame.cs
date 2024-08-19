@@ -24,11 +24,16 @@ public class Frame : MonoBehaviour {
     public Transform indexTip;
 
     bool isPlacing = false;
+
+
+
+    public float timeSinceNotPinching = 0f;
+    public float pinchGraceTime = 0.1f;
     private void Start() {
         //create a frame
-        InitializeFrames();
-        UpdateFrames(new Vector3(0,0,0), new Vector3(2,5,5));
-        FinishFrame();
+        //InitializeFrames();
+        //UpdateFrames(new Vector3(0,0,0), new Vector3(2,5,5));
+        //FinishFrame();
         //Find gameobject with name Hand_IndexTip in usingHand child
         indexTip = usingHand.transform.FindChildRecursive("Hand_IndexTip");
     }
@@ -40,6 +45,7 @@ public class Frame : MonoBehaviour {
             return;
         }
         if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Index)){
+            timeSinceNotPinching = 0f;
             if(!isPlacing){//start placing
                 startPos = indexTip.position;
                 InitializeFrames();
@@ -48,9 +54,15 @@ public class Frame : MonoBehaviour {
             UpdateFrames(startPos, indexTip.position);
         }
         else{
-            if(isPlacing){
-                //end placing
-                FinishFrame();
+            if(isPlacing ){//Account for very short breaks in pinching for better placement
+                if(timeSinceNotPinching > pinchGraceTime){
+                    //end placing
+                    FinishFrame();
+                }
+                else{
+                    timeSinceNotPinching += Time.deltaTime;
+                }
+                
 
 
             }

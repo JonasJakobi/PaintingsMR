@@ -17,7 +17,7 @@ public class PaintingData : ScriptableObject
     
 }
 
-public class FrameData : ScriptableObject
+public class FrameData 
 {
     public Vector3 scale;
     public PaintingData paintingData;

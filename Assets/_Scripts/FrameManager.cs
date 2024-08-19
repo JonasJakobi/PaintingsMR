@@ -11,10 +11,10 @@ public class FrameManager : MonoBehaviour {
       // This reusable buffer helps reduce pressure on the garbage collector
     List<OVRSpatialAnchor.UnboundAnchor> _unboundAnchors = new();
 
-    List<PaintingData> paintings = new List<PaintingData>();
-    List<PaintingObject> frames = new List<PaintingObject>();
+    public List<PaintingData> paintings = new List<PaintingData>();
+    public List<PaintingObject> frames = new List<PaintingObject>();
 
-    public FrameManager Instance;
+    public static FrameManager Instance;
 
     public float newPaintingsInterval = 10f;
     
@@ -22,6 +22,13 @@ public class FrameManager : MonoBehaviour {
     
     public void Start()
     {
+        //get all painting data
+        var paintingData = Resources.LoadAll<PaintingData>("Paintings");
+        //add all painting data to the list
+        foreach (var painting in paintingData)
+        {
+            paintings.Add(painting);
+        }
         Instance = this;
         StartCoroutine(PickNewPaintingsRoutine());
 
@@ -46,6 +53,10 @@ public class FrameManager : MonoBehaviour {
 
     }
 
+    public void RegisterNewFrame(PaintingObject obj){
+        frames.Add(obj);
+    }
+
     public IEnumerator PickNewPaintingsRoutine(){
         //Wait for the interval, pick new, go again
         while(true){
@@ -55,13 +66,7 @@ public class FrameManager : MonoBehaviour {
     }
 
     public void PickNewPaintings(){
-        //get all painting data
-        var paintingData = Resources.LoadAll<PaintingData>("Paintings");
-        //add all painting data to the list
-        foreach (var painting in paintingData)
-        {
-            paintings.Add(painting);
-        }
+        
         List<PaintingData> pickedPaintings = new List<PaintingData>();
         
         foreach(var frame in frames){

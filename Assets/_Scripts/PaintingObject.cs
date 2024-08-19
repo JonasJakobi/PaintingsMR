@@ -31,6 +31,7 @@ public class PaintingObject : MonoBehaviour
         paintingRenderer.transform.parent = this.transform;
         paintingRenderer.transform.localPosition = new Vector3(paintingRenderer.transform.localPosition.x,paintingRenderer.transform.localPosition.y,paintingRenderer.transform.localPosition.z-1f);
 
+        FrameManager.Instance.RegisterNewFrame(this);
 
 
     }
