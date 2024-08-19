@@ -3,8 +3,9 @@ using UnityEngine;
 public class ThumbEffect : MonoBehaviour
 {
     [Header("Thumb")]
+    [SerializeField] private AnimationCurve speedCurve;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float constMoveUpSpeed = 0.1f, thumbDestroyDelay;
+    //[SerializeField] private float thumbDestroyDelay;
     [SerializeField] private GameObject thumUpGo, thumbDownGo;
 
     [Header("Star")]
@@ -12,17 +13,23 @@ public class ThumbEffect : MonoBehaviour
     [SerializeField] private float starSpawnDelay, starDestroyDelay;
     [SerializeField] private Star starPrefab;
 
-    private Vector3 eyePos;
+    private Vector3 target;
+
+    private float maxDistanceToTarget;
 
     private void Awake()
     {
         InvokeRepeating(nameof(SpawnStar), starSpawnDelay, starSpawnDelay);
-        Invoke(nameof(SetDespawnTrigger), thumbDestroyDelay);
+        //Invoke(nameof(SetDespawnTrigger), thumbDestroyDelay);
     }
 
     private void Update()
     {
-        MoveAwayFromEyePos();
+        MoveToTarget();
+        if(Vector3.Distance(transform.position, target) < 0.1f)
+        {
+            SetDespawnTrigger();
+        }
     }
 
     private void SpawnStar()
@@ -31,19 +38,20 @@ public class ThumbEffect : MonoBehaviour
         Instantiate(starPrefab, transform.position + randomOffset, Quaternion.identity).SetDestroyDelay(starDestroyDelay);
     }
 
-    public void Setup(bool thumbsUp, Transform centerEyeTransform)
+    public void Setup(bool thumbsUp, Vector3 targetPos)
     {
         thumUpGo.SetActive(thumbsUp);
         thumbDownGo.SetActive(!thumbsUp);
-        eyePos = centerEyeTransform.position;
+        target = targetPos;
+        maxDistanceToTarget = Vector3.Distance(transform.position, target);
     }
 
-    public void MoveAwayFromEyePos()
+    public void MoveToTarget()
     {
-        Vector3 direction = (transform.position - eyePos).normalized;
-        //always move up
-        direction.y = constMoveUpSpeed;
-        transform.position += moveSpeed * Time.deltaTime * direction;
+        Vector3 direction = (target - transform.position).normalized;
+        float currentDistance = Vector3.Distance(transform.position, target);
+        float speed = speedCurve.Evaluate(currentDistance / maxDistanceToTarget) * moveSpeed;
+        transform.position += speed * Time.deltaTime * direction;
     }
 
     private void SetDespawnTrigger()

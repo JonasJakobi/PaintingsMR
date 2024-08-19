@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5528247722708067752}
   - component: {fileID: 522638734680152816}
   - component: {fileID: 8074652234292300768}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: painting Background
-  m_TagString: Untagged
+  m_TagString: Painting
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
