@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[System.Serializable]
 [CreateAssetMenu(fileName = "New Painting Data", menuName = "Paintings/Painting Data")]
 public class PaintingData : ScriptableObject
 {
@@ -16,10 +16,13 @@ public class PaintingData : ScriptableObject
     //SMall comments
     
 }
-
+[System.Serializable]
 public class FrameData 
 {
-    public Vector3 scale;
+    public Vector3 startPosAtCreation;
+    public Vector3 endPosAtCreation;
+
+    public Vector3 offsetFromSpatialAnchor;
     public PaintingData paintingData;
     
 }

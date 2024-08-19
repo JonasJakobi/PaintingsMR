@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2022.3/staging' branch; Version is '2022.3.30f1 (70558241b701) revision 7361922'; Using compiler version '192829333'; Build Type 'Release'
-OS: 'Windows 11  (10.0.22631) 64bit Core' Language: 'en' Physical Memory: 32174 MB
+OS: 'Windows 11  (10.0.22631) 64bit Core' Language: 'en' Physical Memory: 16224 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
@@ -11,13 +11,13 @@ C:\Program Files\Unity\Hub\Editor\2022.3.30f1\Editor\Unity.exe
 -name
 AssetImportWorker1
 -projectPath
-D:/Unity Projects/PaintingsMR
+C:/Users/erikb/PaintingsMR
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-51562
-Successfully changed project path to: D:/Unity Projects/PaintingsMR
-D:/Unity Projects/PaintingsMR
+62088
+Successfully changed project path to: C:/Users/erikb/PaintingsMR
+C:/Users/erikb/PaintingsMR
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,69 +49,70 @@ D:/Unity Projects/PaintingsMR
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [44368] Host "[IP] 192.168.137.46 [Port] 0 [Flags] 2 [Guid] 2372384917 [EditorId] 2372384917 [Version] 1048832 [Id] WindowsEditor(7,MansuriLaptop) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [12956] Host "[IP] 192.168.4.120 [Port] 0 [Flags] 2 [Guid] 233319021 [EditorId] 233319021 [Version] 1048832 [Id] WindowsEditor(7,MosNicely) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [44368] Host "[IP] 192.168.137.46 [Port] 0 [Flags] 2 [Guid] 2372384917 [EditorId] 2372384917 [Version] 1048832 [Id] WindowsEditor(7,MansuriLaptop) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [12956] Host "[IP] 192.168.4.120 [Port] 0 [Flags] 2 [Guid] 233319021 [EditorId] 233319021 [Version] 1048832 [Id] WindowsEditor(7,MosNicely) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-[Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
-Refreshing native plugins compatible for Editor in 54.31 ms, found 11 plugins.
-Preloading 3 native plugins for Editor in 5.48 ms.
+[Physics::Module] Initialized MultithreadedJobDispatcher with 11 workers.
+Refreshing native plugins compatible for Editor in 245.42 ms, found 11 plugins.
+Preloading 3 native plugins for Editor in 10.21 ms.
 Initialize engine version: 2022.3.30f1 (70558241b701)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.30f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/Unity Projects/PaintingsMR/Assets
+[Subsystems] Discovering subsystems at path C:/Users/erikb/PaintingsMR/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce RTX 3070 Laptop GPU (ID=0x249d)
+    Renderer: NVIDIA GeForce RTX 2070 with Max-Q Design (ID=0x1f14)
     Vendor:   NVIDIA
-    VRAM:     8020 MB
-    Driver:   32.0.15.6081
+    VRAM:     8006 MB
+    Driver:   31.0.15.5123
 Shader 'Meta/MRUK/Scene/HighlightsAndShadows': fallback shader 'Off' not found
 Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.30f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.30f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.30f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56840
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56408
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.30f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.30f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.026441 seconds.
-- Loaded All Assemblies, in  0.882 seconds
+Registered in 0.044816 seconds.
+- Loaded All Assemblies, in  2.591 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 966 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.878 seconds
-Domain Reload Profiling: 1755ms
-	BeginReloadAssembly (286ms)
+- Finished resetting the current domain, in  2.284 seconds
+Domain Reload Profiling: 4856ms
+	BeginReloadAssembly (761ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (2ms)
-	RebuildCommonClasses (81ms)
-	RebuildNativeTypeToScriptingClass (22ms)
-	initialDomainReloadingComplete (146ms)
-	LoadAllAssembliesAndSetupDomain (340ms)
-		LoadAssemblies (282ms)
+		CreateAndSetChildDomain (3ms)
+	RebuildCommonClasses (288ms)
+	RebuildNativeTypeToScriptingClass (138ms)
+	initialDomainReloadingComplete (360ms)
+	LoadAllAssembliesAndSetupDomain (1023ms)
+		LoadAssemblies (749ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (332ms)
-			TypeCache.Refresh (327ms)
-				TypeCache.ScanAssembly (299ms)
+		AnalyzeDomain (1013ms)
+			TypeCache.Refresh (1010ms)
+				TypeCache.ScanAssembly (950ms)
 			ScanForSourceGeneratedMonoScriptInfo (1ms)
-			ResolveRequiredComponents (2ms)
-	FinalizeReload (879ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (2285ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (727ms)
+		SetupLoadedEditorAssemblies (2055ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (322ms)
-			SetLoadedEditorAssemblies (14ms)
+			InitializePlatformSupportModulesInManaged (1426ms)
+			SetLoadedEditorAssemblies (13ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (6ms)
-			ProcessInitializeOnLoadAttributes (281ms)
-			ProcessInitializeOnLoadMethodAttributes (103ms)
+			BeforeProcessingInitializeOnLoad (8ms)
+			ProcessInitializeOnLoadAttributes (445ms)
+			ProcessInitializeOnLoadMethodAttributes (164ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -119,8 +120,9 @@ Domain Reload Profiling: 1755ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  2.915 seconds
-Refreshing native plugins compatible for Editor in 84.22 ms, found 11 plugins.
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  4.106 seconds
+Refreshing native plugins compatible for Editor in 72.83 ms, found 11 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Package Manager log level set to [2]
@@ -134,8 +136,8 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00041] in .\Library\PackageCache\com.unity.xr.oculus@4.2.0\Runtime\OculusLoader.cs:298 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000dd] in .\Library\PackageCache\com.unity.xr.oculus@4.2.0\Runtime\OculusLoader.cs:283 
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0003d] in .\Library\PackageCache\com.unity.xr.oculus@4.2.0\Runtime\OculusLoader.cs:298 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0008c] in .\Library\PackageCache\com.unity.xr.oculus@4.2.0\Runtime\OculusLoader.cs:283 
   at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
   at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <467a840a914a47078e4ae9b0b1e8779e>:0 
    --- End of inner exception stack trace ---
@@ -155,53 +157,52 @@ Mono: successfully reloaded assembly
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  6.709 seconds
-Domain Reload Profiling: 9616ms
-	BeginReloadAssembly (488ms)
+- Finished resetting the current domain, in 10.364 seconds
+Domain Reload Profiling: 14445ms
+	BeginReloadAssembly (711ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (14ms)
+		DisableScriptedObjects (25ms)
 		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (53ms)
-	RebuildCommonClasses (76ms)
-	RebuildNativeTypeToScriptingClass (22ms)
-	initialDomainReloadingComplete (123ms)
-	LoadAllAssembliesAndSetupDomain (2195ms)
-		LoadAssemblies (1741ms)
+		ReleaseScriptingObjects (1ms)
+		CreateAndSetChildDomain (84ms)
+	RebuildCommonClasses (171ms)
+	RebuildNativeTypeToScriptingClass (48ms)
+	initialDomainReloadingComplete (213ms)
+	LoadAllAssembliesAndSetupDomain (2936ms)
+		LoadAssemblies (1712ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (788ms)
-			TypeCache.Refresh (620ms)
-				TypeCache.ScanAssembly (563ms)
-			ScanForSourceGeneratedMonoScriptInfo (115ms)
-			ResolveRequiredComponents (50ms)
-	FinalizeReload (6711ms)
+		AnalyzeDomain (1648ms)
+			TypeCache.Refresh (1368ms)
+				TypeCache.ScanAssembly (1264ms)
+			ScanForSourceGeneratedMonoScriptInfo (190ms)
+			ResolveRequiredComponents (84ms)
+	FinalizeReload (10365ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (6194ms)
+		SetupLoadedEditorAssemblies (9317ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (73ms)
-			SetLoadedEditorAssemblies (13ms)
+			InitializePlatformSupportModulesInManaged (122ms)
+			SetLoadedEditorAssemblies (25ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (405ms)
-			ProcessInitializeOnLoadAttributes (5593ms)
-			ProcessInitializeOnLoadMethodAttributes (90ms)
-			AfterProcessingInitializeOnLoad (20ms)
+			BeforeProcessingInitializeOnLoad (391ms)
+			ProcessInitializeOnLoadAttributes (8659ms)
+			ProcessInitializeOnLoadMethodAttributes (89ms)
+			AfterProcessingInitializeOnLoad (29ms)
 			EditorAssembliesLoaded (1ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (18ms)
+		AwakeInstancesAfterBackupRestoration (25ms)
 Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
 Shader 'Meta/MRUK/Scene/HighlightsAndShadows': fallback shader 'Off' not found
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.11 seconds
-Refreshing native plugins compatible for Editor in 26.42 ms, found 11 plugins.
-Preloading 3 native plugins for Editor in 0.23 ms.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.12 seconds
+Refreshing native plugins compatible for Editor in 76.44 ms, found 11 plugins.
+Preloading 3 native plugins for Editor in 3.58 ms.
 Unloading 5362 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 85 unused Assets / (431.8 KB). Loaded Objects now: 5795.
-Memory consumption went from 206.0 MB to 205.6 MB.
-Total: 16.135900 ms (FindLiveObjects: 1.938400 ms CreateObjectMapping: 0.951400 ms MarkObjects: 12.285200 ms  DeleteObjects: 0.958600 ms)
+Unloading 85 unused Assets / (454.0 KB). Loaded Objects now: 5797.
+Memory consumption went from 205.6 MB to 205.1 MB.
+Total: 14.663600 ms (FindLiveObjects: 1.637200 ms CreateObjectMapping: 1.505200 ms MarkObjects: 10.898600 ms  DeleteObjects: 0.620000 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
   custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
@@ -215,284 +216,113 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 16026.511127 seconds.
-  path: Assets/Resources/DOTweenSettings.asset
-  artifactKey: Guid(bc6d57a887319364cbb0ee828cee7146) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/DOTweenSettings.asset using Guid(bc6d57a887319364cbb0ee828cee7146) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '136917985620fe619dbc1ccc32b6afa0') in 0.034664 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time since last request: 0.000041 seconds.
-  path: Assets/Resources/Paintings/ARoadBelow.asset
-  artifactKey: Guid(f7d7174f19221924db199e11deb55966) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/ARoadBelow.asset using Guid(f7d7174f19221924db199e11deb55966) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b48021a99a206e9c5dd70ae68badf0b6') in 0.004946 seconds
+  Time since last request: 67596.801799 seconds.
+  path: Assets/Resources/Paintings/allegro.asset
+  artifactKey: Guid(e6e25359d902f5c40b336a0a2ccd4de5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Paintings/allegro.asset using Guid(e6e25359d902f5c40b336a0a2ccd4de5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9df349ddecd0dd271adad05934a6d333') in 0.051308 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/Resources/OVRBuildConfig.asset
-  artifactKey: Guid(c03d74bd530ba324485596499df228c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/OVRBuildConfig.asset using Guid(c03d74bd530ba324485596499df228c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b87a0f4b735b3e45ca868b59c13031f0') in 0.002893 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources
-  artifactKey: Guid(197883dbd2bac104e8b649691c32dae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources using Guid(197883dbd2bac104e8b649691c32dae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6b315c2538f64799a062744b2e31ce2') in 0.001268 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/Resources/MetaXRAcousticMaterialMapping.asset
-  artifactKey: Guid(cea14b9739b0d6d408c919f625f80320) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/MetaXRAcousticMaterialMapping.asset using Guid(cea14b9739b0d6d408c919f625f80320) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccb2bb39dbc02e993d750fa52568b808') in 0.003745 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time since last request: 0.000034 seconds.
-  path: Assets/Resources/Paintings/riverlandscape.asset
-  artifactKey: Guid(abc1d81295ab10547b396d7d26c87d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/riverlandscape.asset using Guid(abc1d81295ab10547b396d7d26c87d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31a82245519b786c169f61d5ea78cc42') in 0.004197 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/Resources/Paintings/100114absdl.jpg
-  artifactKey: Guid(4d6203734b5cbfc40aaad157cd90f423) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/100114absdl.jpg using Guid(4d6203734b5cbfc40aaad157cd90f423) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '54e3b31e8b33e15b2fae3e9d4b09c786') in 0.227860 seconds
+  Time since last request: 0.000064 seconds.
+  path: Assets/Resources/Paintings/525447ldsdl.jpg
+  artifactKey: Guid(9e7ee90bd56b3b3478d28e1868e4da0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Paintings/525447ldsdl.jpg using Guid(9e7ee90bd56b3b3478d28e1868e4da0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5f45fe087be7ab7481190319030cb13') in 0.292964 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 3
 ========================================================================
-Received Import Request.
-  Time since last request: 0.000050 seconds.
-  path: Assets/Resources/Paintings/104366absdl.jpg
-  artifactKey: Guid(c1cebe19ee7007b45905bf740a21d16a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/104366absdl.jpg using Guid(c1cebe19ee7007b45905bf740a21d16a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b53ad9b15ef2576ade95bbb416753bbc') in 0.087791 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
-========================================================================
-Received Import Request.
-  Time since last request: 0.000044 seconds.
-  path: Assets/Resources/Paintings/105793absdl.jpg
-  artifactKey: Guid(429f9321b8154c2488a685d1c409ae0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/105793absdl.jpg using Guid(429f9321b8154c2488a685d1c409ae0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee8e38cbf6d8ee166cc5f15544299a1d') in 0.085571 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
-========================================================================
-Received Import Request.
-  Time since last request: 7.105284 seconds.
-  path: Assets/Resources/Paintings/100636absdl.jpg
-  artifactKey: Guid(86a9beddbe4102141acbaae471284085) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/100636absdl.jpg using Guid(86a9beddbe4102141acbaae471284085) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c3bf5a7bd8b9a626c6c57b85f5b7df7') in 0.027998 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000034 seconds.
-  path: Assets/Resources/Paintings/104856absdl (1).jpg
-  artifactKey: Guid(9a9f39d929ae93548b9f148ebf8dd961) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/104856absdl (1).jpg using Guid(9a9f39d929ae93548b9f148ebf8dd961) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '324c847cc02c7e7bf15789a1534d1e8e') in 0.018694 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources/Paintings/103092absdl (1).jpg
-  artifactKey: Guid(381e124873c1b9b419b33699fa50306e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/103092absdl (1).jpg using Guid(381e124873c1b9b419b33699fa50306e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c549e84c009b371e18c3c05a459edcc3') in 0.018371 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000059 seconds.
-  path: Assets/Resources/Paintings/104856absdl.jpg
-  artifactKey: Guid(5a07e7dda8d127c4f85d1cf79e63bd94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/104856absdl.jpg using Guid(5a07e7dda8d127c4f85d1cf79e63bd94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '840d7fc28bacbdb4becb19d61ec3e7cc') in 0.016717 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 10.895763 seconds.
-  path: Assets/Resources/Paintings/203014fgsdl.jpg
-  artifactKey: Guid(c28d3930ace4fd54d8bc15a31fd158cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/203014fgsdl.jpg using Guid(c28d3930ace4fd54d8bc15a31fd158cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1259e1814a5046325f35a8d67dab888') in 0.024197 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/Resources/Paintings/300936rgsdl.jpg
-  artifactKey: Guid(f55822a4e74e6264eb81cad9c9724c8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/300936rgsdl.jpg using Guid(f55822a4e74e6264eb81cad9c9724c8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40d8065d5cfe5b92f9f5b23bd8356637') in 0.030915 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000040 seconds.
-  path: Assets/Resources/Paintings/711985ansdl (1).jpg
-  artifactKey: Guid(0cbfef45d0eb4e1469024baf3533a957) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/711985ansdl (1).jpg using Guid(0cbfef45d0eb4e1469024baf3533a957) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab140b700d5e8ab797f6e66ccbc6f3fc') in 0.020518 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000057 seconds.
-  path: Assets/Resources/Paintings/502018ldsdl.jpg
-  artifactKey: Guid(95c279a504ddf794cb21fa3017cf756e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/502018ldsdl.jpg using Guid(95c279a504ddf794cb21fa3017cf756e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ae5f816e9666ccd6ed737dfc6e7757c') in 0.024509 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/Resources/Paintings/203014fgsdl (1).jpg
-  artifactKey: Guid(35ade0fcc306beb4db6f66ff1d8437e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/203014fgsdl (1).jpg using Guid(35ade0fcc306beb4db6f66ff1d8437e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ddd2c5339543588875e9475053dde560') in 0.016819 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/Resources/Paintings/300226rgsdl.jpg
-  artifactKey: Guid(3af8951be7b2b5240aa7adde995c9607) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/300226rgsdl.jpg using Guid(3af8951be7b2b5240aa7adde995c9607) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f208f90346be82c50b55c0004ea95b9f') in 0.017273 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000056 seconds.
-  path: Assets/Resources/Paintings/533687ldsdl.jpg
-  artifactKey: Guid(e5764cb93c8765b43a82cb62d31403c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/533687ldsdl.jpg using Guid(e5764cb93c8765b43a82cb62d31403c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f0bf36678fa3c0bce8a77d6861c0395') in 0.023413 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources/Paintings/912690absdl.jpg
-  artifactKey: Guid(7ad387e928d07814daf01d2098080ff9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/912690absdl.jpg using Guid(7ad387e928d07814daf01d2098080ff9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '121cfb5066ed0ba3de17cb88cb011710') in 0.016487 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 171.955048 seconds.
-  path: Assets/Resources/Paintings/54736drsdl 1.jpg
-  artifactKey: Guid(8609a3171489095448a14387d4325716) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/54736drsdl 1.jpg using Guid(8609a3171489095448a14387d4325716) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '298905d6d58c680c0102b346abfe3f88') in 0.010502 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/Paintings/100114absdl 1.jpg
-  artifactKey: Guid(f1f66cf2093ba484588446f4ddb49cdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/100114absdl 1.jpg using Guid(f1f66cf2093ba484588446f4ddb49cdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9232add07e03350d9989406a0695c58e') in 0.026299 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
-========================================================================
-Received Import Request.
-  Time since last request: 58.287545 seconds.
-  path: Assets/Resources/Paintings/54736drsdl 1.jpg
-  artifactKey: Guid(8609a3171489095448a14387d4325716) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/54736drsdl 1.jpg using Guid(8609a3171489095448a14387d4325716) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4dc01a6afb8df2b1a339f3157c7d990f') in 0.052890 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000037 seconds.
-  path: Assets/Resources/Paintings/103092absdl.jpg
-  artifactKey: Guid(b78867ed2c1e1b14f932c2c658debe17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/103092absdl.jpg using Guid(b78867ed2c1e1b14f932c2c658debe17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c696af7ad926e528c20d2c6484af726b') in 0.035981 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000043 seconds.
-  path: Assets/Resources/Paintings/300936rgsdl.jpg
-  artifactKey: Guid(f55822a4e74e6264eb81cad9c9724c8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/300936rgsdl.jpg using Guid(f55822a4e74e6264eb81cad9c9724c8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da6d598c3e89c766bb8b0d8a5fa11cff') in 0.074666 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000039 seconds.
-  path: Assets/Resources/Paintings/403971mtsdl (1).jpg
-  artifactKey: Guid(03f5b9836a3a5e24c8790f1317d67212) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/403971mtsdl (1).jpg using Guid(03f5b9836a3a5e24c8790f1317d67212) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc7844b93f9c7892426e2e5bd8c5ea96') in 0.056708 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000058 seconds.
-  path: Assets/Resources/Paintings/220119fgsdl.jpg
-  artifactKey: Guid(28dca94e7e376814086951fdb0c2af2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/220119fgsdl.jpg using Guid(28dca94e7e376814086951fdb0c2af2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fdcd849dd9d1bd74ec12be687741fe45') in 0.032779 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000055 seconds.
-  path: Assets/Resources/Paintings/240780fgsdl.jpg
-  artifactKey: Guid(980f61e840ce4874a8b092052db78965) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/240780fgsdl.jpg using Guid(980f61e840ce4874a8b092052db78965) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3465ba27fe193e8253279ef2ff08957') in 0.034319 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000052 seconds.
-  path: Assets/Resources/Paintings/300226rgsdl.jpg
-  artifactKey: Guid(3af8951be7b2b5240aa7adde995c9607) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/300226rgsdl.jpg using Guid(3af8951be7b2b5240aa7adde995c9607) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8974e680e8adac9a433f289d19b3a6bf') in 0.035454 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/Resources/Paintings/220868fgsdl.jpg
-  artifactKey: Guid(ca2ac555544d41c4aa84a53f94e00ea8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/220868fgsdl.jpg using Guid(ca2ac555544d41c4aa84a53f94e00ea8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88be760a13ebcff0f3b049a93bb51f7d') in 0.035174 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000032 seconds.
-  path: Assets/Resources/Paintings/106004absdl.jpg
-  artifactKey: Guid(ddf757a572cab6e418c16027a0945761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/106004absdl.jpg using Guid(ddf757a572cab6e418c16027a0945761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '205b4eac7d909c0064032653c3888747') in 0.030427 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000035 seconds.
-  path: Assets/Resources/Paintings/533687ldsdl.jpg
-  artifactKey: Guid(e5764cb93c8765b43a82cb62d31403c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/533687ldsdl.jpg using Guid(e5764cb93c8765b43a82cb62d31403c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92df4149dc1a2ce951113a9b48b690c2') in 0.029139 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000113 seconds.
-  path: Assets/Resources/Paintings/227037fgsdl.jpg
-  artifactKey: Guid(993e97bea9b8c7f47867ca7ad596c4ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/227037fgsdl.jpg using Guid(993e97bea9b8c7f47867ca7ad596c4ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '748fffeb5c091cf55f798c19e5435be8') in 0.031184 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000063 seconds.
-  path: Assets/Resources/Paintings/104856absdl.jpg
-  artifactKey: Guid(5a07e7dda8d127c4f85d1cf79e63bd94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Paintings/104856absdl.jpg using Guid(5a07e7dda8d127c4f85d1cf79e63bd94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea5884a47110fa619324ce344d626229') in 0.033837 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  2.352 seconds
+Refreshing native plugins compatible for Editor in 44.61 ms, found 11 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0003d] in .\Library\PackageCache\com.unity.xr.oculus@4.2.0\Runtime\OculusLoader.cs:298 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0008c] in .\Library\PackageCache\com.unity.xr.oculus@4.2.0\Runtime\OculusLoader.cs:283 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <467a840a914a47078e4ae9b0b1e8779e>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <467a840a914a47078e4ae9b0b1e8779e>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <467a840a914a47078e4ae9b0b1e8779e>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <e21ef1ad5a5e4c73a2048dac84671e33>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in 11.233 seconds
+Domain Reload Profiling: 13553ms
+	BeginReloadAssembly (799ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (16ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (379ms)
+	RebuildCommonClasses (165ms)
+	RebuildNativeTypeToScriptingClass (54ms)
+	initialDomainReloadingComplete (135ms)
+	LoadAllAssembliesAndSetupDomain (1165ms)
+		LoadAssemblies (1387ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (81ms)
+			TypeCache.Refresh (18ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (59ms)
+	FinalizeReload (11234ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (9098ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (98ms)
+			SetLoadedEditorAssemblies (12ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (325ms)
+			ProcessInitializeOnLoadAttributes (8514ms)
+			ProcessInitializeOnLoadMethodAttributes (109ms)
+			AfterProcessingInitializeOnLoad (40ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (47ms)
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Meta/MRUK/Scene/HighlightsAndShadows': fallback shader 'Off' not found
+Refreshing native plugins compatible for Editor in 69.99 ms, found 11 plugins.
+Preloading 3 native plugins for Editor in 0.89 ms.
+Unloading 5251 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 68 unused Assets / (426.1 KB). Loaded Objects now: 5806.
+Memory consumption went from 180.6 MB to 180.2 MB.
+Total: 15.938000 ms (FindLiveObjects: 1.090500 ms CreateObjectMapping: 0.987500 ms MarkObjects: 12.893200 ms  DeleteObjects: 0.963400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
 AssetImportWorker is now disconnected from the server

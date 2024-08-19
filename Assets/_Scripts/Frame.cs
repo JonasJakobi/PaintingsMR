@@ -2,6 +2,7 @@ using UnityEngine;
 using Meta.XR.MRUtilityKit;
 using OVR;
 using System.Collections.Generic;
+using DG.Tweening;
 public class Frame : MonoBehaviour {
     public static Frame Instance; 
     
@@ -26,12 +27,14 @@ public class Frame : MonoBehaviour {
     bool isPlacing = false;
 
     public GameObject objectToMove;
-    public bool movingIsOn;
+    public bool movingIsOn = false;
 
 
 
     public float timeSinceNotPinching = 0f;
-    public float pinchGraceTime = 0.1f;
+    public float timeSincePinching = 0f;
+    public float pinchGraceTime = 0.07f;
+    public float startPlacingTime = 1f;
     private void Start() {
         Instance = this;
         //create a frame
@@ -49,8 +52,14 @@ public class Frame : MonoBehaviour {
             return;
         }
 
-        PlacementInputs();
-        MovingInputs();
+        
+        if(movingIsOn){
+            MovingInputs();
+        }
+        else{
+            PlacementInputs();
+        }
+        
     }
     public void SetObjectToMove(GameObject obj){
         objectToMove = obj;
@@ -63,25 +72,33 @@ public class Frame : MonoBehaviour {
 
     private void MovingInputs(){
         if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Index)){
-            bg.transform.position = ClosestWallPos(indexTip.position);
+            objectToMove.transform.position = ClosestWallPos(indexTip.position);
+            bg.GetComponent<PaintingObject>().frameData.offsetFromSpatialAnchor = bg.transform.localPosition;
         }
     }
     private void PlacementInputs(){
         
-        if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Middle)){
+        if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Index)){
+            timeSincePinching += Time.deltaTime;
             timeSinceNotPinching = 0f;
+            if(timeSincePinching < startPlacingTime){ // we stop here
+                return;
+            }
             if(!isPlacing){//start placing
                 startPos = ClosestWallPos(indexTip.position);
                 InitializeFrames();
             }//update the frame
             isPlacing = true;
             UpdateFrames(startPos, ClosestWallPos(indexTip.position));
+            
         }
         else{
             if(isPlacing ){//Account for very short breaks in pinching for better placement
                 if(timeSinceNotPinching > pinchGraceTime){
+                    timeSincePinching = 0f;
                     //end placing
                     FinishFrame();
+                    HaveFrameBePaintingObject(startPos, ClosestWallPos(indexTip.position));
                 }
                 else{
                     timeSinceNotPinching += Time.deltaTime;
@@ -103,10 +120,10 @@ public class Frame : MonoBehaviour {
     
     public void FinishFrame(){
         
-        framePart1.transform.parent = bg.transform;
-        framePart2.transform.parent = bg.transform;
-        framePart3.transform.parent = bg.transform;
-        framePart4.transform.parent = bg.transform;
+        framePart1.transform.SetParent(bg.transform);
+        framePart2.transform.SetParent(bg.transform);
+        framePart3.transform.SetParent(bg.transform);
+        framePart4.transform.SetParent(bg.transform);
         isPlacing = false;
         if(bg.transform.localScale.x + bg.transform.localScale.y < minSize){
             Destroy(bg.gameObject);
@@ -116,8 +133,22 @@ public class Frame : MonoBehaviour {
             Destroy(bg.gameObject);
             return;
         }
+        
+        
+    }
+    public PaintingObject HaveFrameBePaintingObject(Vector3 startPos, Vector3 endPos, bool needsAnchor = true){
         var obj = bg.AddComponent<PaintingObject>();
         obj.Initialize();
+        obj.SetStartAndEndPointWhenFinishingCreation(startPos, endPos);
+        if(needsAnchor){
+            StartCoroutine(obj.CreateSpatialAnchor());
+        }
+        bg = obj.gameObject;
+        var scale = bg.transform.localScale;
+        bg.transform.localScale = new Vector3(0, 0, 0);
+        bg.transform.DOScale(scale, 1f).SetEase(Ease.OutBack);
+        return obj;
+        
     }
 
     public Vector3 GetClosestMRUK(Vector3 point){
@@ -170,7 +201,7 @@ public class Frame : MonoBehaviour {
     
         bg.transform.rotation = Quaternion.LookRotation(surfaceNormal, Vector3.up);
         bg.transform.position = new Vector3((startPos.x + endPos.x) / 2, (startPos.y + endPos.y) / 2, (startPos.z + endPos.z) / 2);
-        bg.transform.localScale = new Vector3(offset / 2 + Mathf.Sqrt(Mathf.Abs(startPos.x - endPos.x) * Mathf.Abs(startPos.x - endPos.x) + Mathf.Abs(startPos.z - endPos.z) * Mathf.Abs(startPos.z - endPos.z)), Mathf.Abs(endPos.y - startPos.y) - 0.01f, 0.01f);
+        bg.transform.localScale = new Vector3(Mathf.Sqrt(Mathf.Abs(startPos.x - endPos.x) * Mathf.Abs(startPos.x - endPos.x) + Mathf.Abs(startPos.z - endPos.z) * Mathf.Abs(startPos.z - endPos.z)) - offset/2, Mathf.Abs(endPos.y - startPos.y) - offset/2, 0.01f);
         
     }   
 

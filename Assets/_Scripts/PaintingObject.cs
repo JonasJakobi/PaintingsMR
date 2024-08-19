@@ -14,8 +14,12 @@ public class PaintingObject : MonoBehaviour
     
     private void Start() {
         
-        //StartCoroutine(CreateSpatialAnchor());
-        //Instantiate a blank gameobject
+       
+
+    }
+    public void Initialize( ){
+        frameData = new FrameData();
+         //Instantiate a blank gameobject
 
         paintingRenderer =new GameObject("Painting Renderer").AddComponent<SpriteRenderer>();
         paintingRenderer.transform.position = this.transform.position;
@@ -36,15 +40,16 @@ public class PaintingObject : MonoBehaviour
 
 
     }
-    public void Initialize( ){
-        frameData = new FrameData();
-        frameData.scale = transform.localScale;
+
+    public void SetStartAndEndPointWhenFinishingCreation(Vector3 startpos, Vector3 endPos){
+        frameData.startPosAtCreation = startpos;
+        frameData.endPosAtCreation = endPos;
     }
 
     public void LoadPaintingData(PaintingData data)
     {
         var rend = GetComponentInChildren<SpriteRenderer>();
-        float initialdelay = 0.5f;
+        float initialdelay = 0.8f;
         if(rend.sprite == null){
             initialdelay = 0;
         }
@@ -52,7 +57,7 @@ public class PaintingObject : MonoBehaviour
         rend.DOColor(new Color(1,1,1,0), initialdelay).OnComplete(() => {
             frameData.paintingData = data;
             rend.sprite = data.paintingSprite;
-            rend.DOColor(new Color(1,1,1,1), 0.5f);
+            rend.DOColor(new Color(1,1,1,1), 0.8f);
         });
     }
     public bool isLandsape(){
@@ -73,27 +78,33 @@ public class PaintingObject : MonoBehaviour
 
 
     //---------------Spatial Anchor Stuff -----------
-    private IEnumerator CreateSpatialAnchor()
-    {
-        var anchor = gameObject.AddComponent<OVRSpatialAnchor>();
+    public IEnumerator CreateSpatialAnchor()
+    {   
+        //Instantiate an anchor
+        var anchor = new GameObject("Anchor");
+        anchor.transform.position = transform.position;
+        anchor.AddComponent<OVRSpatialAnchor>();
+        transform.parent = anchor.transform;
+
 
         // Wait for the async creation
-        yield return new WaitUntil(() => anchor.Created);
+        yield return new WaitUntil(() => anchor.GetComponent<OVRSpatialAnchor>().Created);
 
-        Debug.Log($"Created anchor {anchor.Uuid}");
-        OnSaveButtonPressed(anchor);
     }
 
-    public async void OnSaveButtonPressed(OVRSpatialAnchor anchor)
+    public async void OnSaveButtonPressed()
     {
+        OVRSpatialAnchor anchor = transform.parent.GetComponent<OVRSpatialAnchor>();
         var result = await anchor.SaveAnchorAsync();
         if (result.Success)
         {
             Debug.Log($"Anchor {anchor.Uuid} saved successfully.");
             //save the paintingdata with the uuid of the anchor to the playerprefs
-            PlayerPrefs.SetString(anchor.Uuid.ToString(), JsonUtility.ToJson(frameData.paintingData));
+            PlayerPrefs.SetString(anchor.Uuid.ToString(), JsonUtility.ToJson(frameData));
+            //if the uuid is not in the playerprefs yet
             //save the uuid to the playerprefs
-            PlayerPrefs.SetString("SavedAnchors", PlayerPrefs.GetString("SavedAnchors", "") + anchor.Uuid + ",");
+            if (!PlayerPrefs.GetString("SavedAnchors", "").Contains(anchor.Uuid.ToString()))
+                PlayerPrefs.SetString("SavedAnchors", PlayerPrefs.GetString("SavedAnchors", "") + anchor.Uuid + ",");
         }
         else
         {
@@ -103,9 +114,10 @@ public class PaintingObject : MonoBehaviour
 
     public async void OnEraseButtonPressed()
     {
-        PlayerPrefs.DeleteKey(GetComponent<OVRSpatialAnchor>().Uuid.ToString());
-        PlayerPrefs.SetString("SavedAnchors", PlayerPrefs.GetString("SavedAnchors", "").Replace(GetComponent<OVRSpatialAnchor>().Uuid.ToString() + ",", ""));
-        var result = await GetComponent<OVRSpatialAnchor>().EraseAnchorAsync();
+        FrameManager.Instance.frames.Remove(this);
+        PlayerPrefs.DeleteKey(transform.parent.GetComponent<OVRSpatialAnchor>().Uuid.ToString());
+        PlayerPrefs.SetString("SavedAnchors", PlayerPrefs.GetString("SavedAnchors", "").Replace(transform.parent.GetComponent<OVRSpatialAnchor>().Uuid.ToString() + ",", ""));
+        var result = await transform.parent.GetComponent<OVRSpatialAnchor>().EraseAnchorAsync();
         if (result.Success)
         {
             Debug.Log($"Successfully erased anchor.");
