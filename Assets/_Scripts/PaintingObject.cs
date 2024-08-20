@@ -60,6 +60,16 @@ public class PaintingObject : MonoBehaviour
         rend.DOColor(new Color(1,1,1,0), initialdelay).OnComplete(() => {
             frameData.paintingData = data;
             rend.sprite = data.paintingSprite;
+
+            if(data.title == "Saul and David"){
+                Vector3 currentScale = rend.transform.localScale;
+                rend.transform.localScale = new Vector3(currentScale.x*0.5f,currentScale.y*0.5f,currentScale.z);
+
+            }
+            else
+            {
+                rend.transform.localScale = new Vector3(1,1,1);
+            }
             rend.DOColor(new Color(1,1,1,1), 0.8f);
             paintingUI.SetNewPainting(data);
         });
