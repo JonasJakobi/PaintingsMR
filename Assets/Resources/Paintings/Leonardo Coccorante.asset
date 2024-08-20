@@ -15,7 +15,9 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 48c4d1dfbdd53d840a4a14eafea57e33, type: 3}
   artist: Leonardo Coccorante
   title: Classic Ruins With Fountain On The Sea
-  description: 
+  description: Leonardo Coccorante's painting "Classic Ruins with Fountain on the
+    Sea" showcases his talent for creating capricci, which are imaginative and picturesque
+    architectural scenes combining both real and fantastical elements.
   yearMade: 1680
   tags: 0c0000001500000008000000
   isLandsape: 1

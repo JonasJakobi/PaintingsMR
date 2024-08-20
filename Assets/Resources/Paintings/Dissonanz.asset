@@ -15,7 +15,9 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 396330d7a0e24f84dbf2221760f2e6b5, type: 3}
   artist: Franz von Stuck
   title: Dissonanz
-  description: 
+  description: Franz von Stuck's "Dissonanz" is a striking and symbolically rich
+    painting that embodies the themes of conflict and emotional turmoil, consistent
+    with the artist's exploration of mythological and psychological motifs.
   yearMade: 1900
   tags: 0000000008000000
   isLandsape: 0

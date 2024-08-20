@@ -15,7 +15,9 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 7822ecc3e5ae83c4bb4e1f0c7daf64bc, type: 3}
   artist: "Gabriele M\xFCnter "
   title: "Kallm\xFCnz"
-  description: 
+  description: "Gabriele M\xFCnter's painting \"Kallm\xFCnz\" from 1903 represents
+    an early phase of her career, before she fully embraced the Expressionist style
+    she is most famous."
   yearMade: 1903
   tags: 0800000000000000
   isLandsape: 1

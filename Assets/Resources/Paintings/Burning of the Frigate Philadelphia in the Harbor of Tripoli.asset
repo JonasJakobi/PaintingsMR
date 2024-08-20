@@ -15,7 +15,10 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 7e75c8f4b1d5b8340a88c90f8d988a96, type: 3}
   artist: Edward Moran
   title: 'Burning of the Frigate Philadelphia in the Harbor of Tripoli '
-  description: 
-  yearMade: 0
-  tags: 030000000600000003000000
+  description: The painting titled "Burning of the Frigate Philadelphia in the Harbor
+    of Tripoli" by Edward Moran depicts a dramatic and fiery naval scene from the
+    First Barbary War, this artwork captures the intense moment when the USS Philadelphia,
+    captured by Tripolitan forces.
+  yearMade: 1897
+  tags: 0300000006000000
   isLandsape: 0

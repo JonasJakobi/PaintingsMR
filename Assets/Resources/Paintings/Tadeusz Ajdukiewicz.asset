@@ -15,7 +15,15 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: e7406d964e07b5b418a404311f857555, type: 3}
   artist: 'Tadeusz Ajdukiewicz '
   title: 'Arab on a grey horse '
-  description: 
-  yearMade: 0
+  description: Tadeusz Ajdukiewicz's painting "Arab on a Grey Horse" is a fine example
+    of his skill in portraying equestrian figures and his interest in diverse cultural
+    subjects. This artwork likely dates from the late 19th century, as Ajdukiewicz
+    was most active during this period, and he is known for his detailed and realistic
+    portraits and genre scenes that often included military and oriental subjects. 
+    The painting depicts an Arab figure mounted on a striking grey horse, set against
+    a sparse, possibly desert background. The horse is shown in motion, possibly
+    at a trot, with its mane and tail captured in mid-swing, emphasizing the dynamic
+    nature of the scene
+  yearMade: 1884
   tags: 02000000080000000d000000
   isLandsape: 0

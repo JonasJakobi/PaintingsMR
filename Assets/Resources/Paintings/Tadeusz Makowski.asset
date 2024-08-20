@@ -15,7 +15,12 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 0cf37401cb5db4f439b8bfdfb798e561, type: 3}
   artist: Tadeusz Makowski
   title: Ball
-  description: 
+  description: Tadeusz Makowski's "Ball, 1932" offers a vibrant and somewhat abstract
+    interpretation of a traditional ball scene, reflecting the artist's unique style
+    that merges elements of folk art with modernist influences. This painting showcases
+    Makowski's characteristic approach to form and color, where figures are stylized
+    with rounded, simplified shapes, and the composition is imbued with a rhythmic,
+    almost musical quality.
   yearMade: 1931
   tags: 00000000
   isLandsape: 1

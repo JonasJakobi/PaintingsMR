@@ -15,7 +15,11 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 15bce03808bfbe040be5d3a98212f0ca, type: 3}
   artist: 'David Roberts '
   title: The simoon in the desert
-  description: 
-  yearMade: 1838
+  description: This is a plate from the standard edition of "The Holy Land, Syria,
+    Idumea, Arabia, Egypt & Nubia", from drawings made on the spot by David Roberts
+    R.A.. Lithographed by Louis Haghe of the firm Day & Haghe, one of the earliest
+    lithograph publishers of England, these prints were published in six-volume sets
+    over a span of eight years (1841-49).
+  yearMade: 1844
   tags: 0300000006000000
   isLandsape: 1

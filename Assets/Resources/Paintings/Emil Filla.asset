@@ -15,7 +15,10 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 3d76171529817a7499931ee25aa0d397, type: 3}
   artist: ' Emil Filla'
   title: Akt
-  description: 
+  description: '"Akt" (which translates to "Nude" in English). Emil Filla, a renowned
+    Czech avant-garde painter, was active primarily in the early 20th century until
+    his death in 1953. His works are known for their cubist style, and he played
+    a significant role in the European modern art scene of his time.'
   yearMade: 1933
-  tags: 
+  tags: 000000000500000004000000
   isLandsape: 0

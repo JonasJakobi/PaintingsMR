@@ -15,7 +15,11 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 8d7ee2937bd6736429c2d018cadecae1, type: 3}
   artist: 'Charles Verlat '
   title: The Duke of Alva's statue dragged through the streets of Antwerp
-  description: 
+  description: The Duke of Alva's Statue Dragged Through the Streets of Antwerp"
+    by Charles Verlat is a powerful historical painting that captures a moment of
+    revolt and symbolic resistance. The artwork depicts the act of protesters pulling
+    down the statue of the Duke of Alva, a figure notorious for his oppressive rule
+    over the Netherlands during the Spanish occupation.
   yearMade: 1888
   tags: 030000000800000009000000
   isLandsape: 1

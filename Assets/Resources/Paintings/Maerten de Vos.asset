@@ -15,7 +15,12 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 4fc7ec44195c13d44bb535e1062f7057, type: 3}
   artist: 'Maerten de Vos '
   title: Saint Luke Appearing at the Curch of Our Lady in Tripoli
-  description: 
+  description: This painting likely depicts the miraculous appearance of Saint Luke,
+    known as the patron saint of artists, at the Church of Our Lady in Tripoli. The
+    scene would be filled with dramatic intensity and divine radiance, highlighting
+    Saint Luke's heavenly visitation. Typically, de Vos' work includes a rich array
+    of characters, each rendered with distinct emotions and reactions to the unfolding
+    mirac
   yearMade: 1577
   tags: 080000000200000009000000
   isLandsape: 1

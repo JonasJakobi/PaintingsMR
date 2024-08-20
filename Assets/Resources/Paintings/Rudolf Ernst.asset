@@ -15,7 +15,7 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 56e05553a6a9eb74c9c43b6845e32d84, type: 3}
   artist: 'Rudolf Ernst '
   title: An Afternoon Show
-  description: 
+  description: Rudolf Ernst - an afternoon show
   yearMade: 0
   tags: 080000000a00000003000000
   isLandsape: 0

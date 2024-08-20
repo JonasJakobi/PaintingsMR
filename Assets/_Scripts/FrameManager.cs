@@ -10,12 +10,13 @@ using Meta.XR.MRUtilityKit;
 using TMPro;
 
 
-public class FrameManager : MonoBehaviour {
-      // This reusable buffer helps reduce pressure on the garbage collector
+public class FrameManager : MonoBehaviour
+{
+    // This reusable buffer helps reduce pressure on the garbage collector
     List<OVRSpatialAnchor.UnboundAnchor> _unboundAnchors = new();
 
     public List<PaintingData> paintings = new();
-    List<PaintingData> pickedPaintings = new();
+    public List<PaintingData> pickedPaintings = new();
     public List<PaintingObject> frames = new();
     private Dictionary<PaintingTag, int> tagsLikeCounter = new();
 
@@ -24,9 +25,9 @@ public class FrameManager : MonoBehaviour {
     public float newPaintingsInterval = 10f;
 
     [SerializeField] private TextMeshProUGUI likesText, dislikesText;
-    
-    
-    
+
+
+
     public void Start()
     {
         //get all painting data
@@ -40,31 +41,38 @@ public class FrameManager : MonoBehaviour {
         StartCoroutine(PickNewPaintingsRoutine());
 
         //initialize the like counter
-        foreach(PaintingTag tag in Enum.GetValues(typeof(PaintingTag))){
+        foreach (PaintingTag tag in Enum.GetValues(typeof(PaintingTag)))
+        {
             tagsLikeCounter.Add(tag, 0);
         }
 
         UpdateLikeText();
         UpdateDislikeText();
     }
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            foreach(var frame in frames){
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            foreach (var frame in frames)
+            {
                 frame.OnSaveButtonPressed();
             }
         }
-        if(Input.GetKeyDown(KeyCode.L)){
+        if (Input.GetKeyDown(KeyCode.L))
+        {
             StartLoadingAnchors();
         }
 
-        if(Input.GetKeyDown(KeyCode.R)){
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             FindObjectsOfType<PaintingObject>().ToList().ForEach(p => p.OnEraseButtonPressed());
         }
     }
-    public void StartLoadingAnchors(){
+    public void StartLoadingAnchors()
+    {
         //get all keys currently saved in playerprefs
         var keys = PlayerPrefs.GetString("SavedAnchors", "").Split(',');
-        if(keys.Length > 0)
+        if (keys.Length > 0)
         {
             //convert the keys to Guids
             var uuids = new List<Guid>();
@@ -79,40 +87,47 @@ public class FrameManager : MonoBehaviour {
         }
     }
 
-    public void RegisterNewFrame(PaintingObject obj){
+    public void RegisterNewFrame(PaintingObject obj)
+    {
         frames.Add(obj);
         PickPaintingFor(obj);
     }
 
-    public IEnumerator PickNewPaintingsRoutine(){
+    public IEnumerator PickNewPaintingsRoutine()
+    {
         //Wait for the interval, pick new, go again
-        while(true){
+        while (true)
+        {
             yield return new WaitForSeconds(newPaintingsInterval);
             PickNewPaintings();
         }
     }
 
-    public void PickNewPaintings(){
+    public void PickNewPaintings()
+    {
         Debug.Log("Picking new paintings");
-        
+
         pickedPaintings = new List<PaintingData>();
-        
-        foreach(var frame in frames){
-            if(frame == null){
+
+        foreach (var frame in frames)
+        {
+            if (frame == null)
+            {
                 continue;
             }
             PickPaintingFor(frame);
         }
     }
 
-    public void PickPaintingFor(PaintingObject frame){
+    public void PickPaintingFor(PaintingObject frame)
+    {
         //filter for only landscape if frame is landscape
-            List<PaintingData> availablePaintings = paintings.Where(p => !pickedPaintings.Contains(p)).Where(p => frame.frameData.paintingData != p).Where(p => p.isLandsape == frame.isLandsape()).ToList();
-            //pick a random painting
-            var pickedPainting = availablePaintings[UnityEngine.Random.Range(0, availablePaintings.Count)];
-            frame.frameData.paintingData = pickedPainting;
-            pickedPaintings.Add(pickedPainting);
-            frame.LoadPaintingData(pickedPainting);
+        List<PaintingData> availablePaintings = paintings.Where(p => !pickedPaintings.Contains(p)).Where(p => frame.frameData.paintingData != p).Where(p => p.isLandsape == frame.isLandsape()).ToList();
+        //pick a random painting
+        var pickedPainting = availablePaintings[UnityEngine.Random.Range(0, availablePaintings.Count)];
+        frame.frameData.paintingData = pickedPainting;
+        pickedPaintings.Add(pickedPainting);
+        frame.LoadPaintingData(pickedPainting);
     }
 
     public void GiveLikes(PaintingTag[] tags, int value)
@@ -126,7 +141,8 @@ public class FrameManager : MonoBehaviour {
         UpdateDislikeText();
     }
 
-    private void UpdateLikeText(){
+    private void UpdateLikeText()
+    {
         likesText.text = "<b>Likes:</b>\n";
         foreach (var tag in tagsLikeCounter)
         {
@@ -135,7 +151,8 @@ public class FrameManager : MonoBehaviour {
         }
     }
 
-    private void UpdateDislikeText(){
+    private void UpdateDislikeText()
+    {
         dislikesText.text = "<b>Dislikes:</b>\n";
         foreach (var tag in tagsLikeCounter)
         {
@@ -143,7 +160,16 @@ public class FrameManager : MonoBehaviour {
                 dislikesText.text += tag.Key + ": " + tag.Value + "\n";
         }
     }
-       
+
+    public int GetLikesForTag(PaintingTag tag)
+    {
+        if (tagsLikeCounter.ContainsKey(tag))
+        {
+            return tagsLikeCounter[tag];
+        }
+        return 0;
+    }
+
 
 
 
