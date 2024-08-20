@@ -15,7 +15,10 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: f3160c289857d484e8a88015c384ca05, type: 3}
   artist: Charles van den Eycken
   title: 'The Busybody '
-  description: 
+  description: '"The Busybody" by Charles van den Eycken is a charming and detailed
+    painting that captures a domestic scene involving cats, which was a common subject
+    for the artist. Van den Eycken, known for his skillful and realistic depictions
+    of animals, particularly cats, portrays them in a playful and curious manner.'
   yearMade: 1911
   tags: 020000000f000000
   isLandsape: 1

@@ -15,7 +15,11 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: b2954623034ce264a8313b6cce098f47, type: 3}
   artist: Vincent van Gogh
   title: 'Cypresses '
-  description: 
+  description: "Vincent van Gogh's \"Cypresses\" is one of his most famous and emotionally
+    charged paintings, created in 1889 during his stay at the Saint-Paul-de-Mausole
+    asylum in Saint-R\xE9my, France. The painting features swirling cypress trees
+    under a dynamic, expressive sky, capturing the intense and turbulent emotional
+    state van Gogh experienced during this period. "
   yearMade: 1889
   tags: 0600000008000000
   isLandsape: 0

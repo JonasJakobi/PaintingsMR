@@ -15,7 +15,9 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 46ca03c070cf5fe44adf656429cb304d, type: 3}
   artist: Arabian horses in the desert, Arab stallions at sunset
   title: 'John Alexander Harrington '
-  description: 
+  description: The painting you've shared, attributed to John Alexander Harrington
+    and titled "Arab Horses," beautifully captures two horses engaged in a dynamic,
+    spirited display against a serene, sunset backdrop.
   yearMade: 0
   tags: 0d0000000f000000
   isLandsape: 1

@@ -6403,6 +6403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintings: []
+  pickedPaintings: []
   frames: []
   newPaintingsInterval: 10
   likesText: {fileID: 2145152694}

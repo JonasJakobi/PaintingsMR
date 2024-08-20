@@ -15,7 +15,10 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 921e4ae20d205844780c096521c63f9f, type: 3}
   artist: Wassily Kandinsky
   title: Arab Cavalry
-  description: 
+  description: The painting you've shared, titled "Arab Calvary," was created by
+    Wassily Kandinsky in 1905. This work is quite distinct from his later abstract
+    compositions, as it vividly portrays a group of Arab horsemen in motion, with
+    expressive, somewhat stylized figures and a sense of dynamic activity.
   yearMade: 1905
   tags: 030000000000000008000000
   isLandsape: 1

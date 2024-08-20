@@ -15,7 +15,13 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 72b2347997ecd254e9f30ec54684154b, type: 3}
   artist: briot isaac
   title: "Livre de toutes sortes de feuilles servant \xE0 l'orf\xE8vrerie Plate 2"
-  description: 
+  description: " \"Livre de toutes sortes de feuilles servant \xE0 l'orf\xE8vrerie
+    Plate 2\" showcases a highly ornate and intricate design that is typical of Briot's
+    work in engraving. The artwork features a fantastical arrangement of foliate
+    forms, swirling into an almost surreal composition. Two figures in period attire
+    anchor the composition in the foreground; one holds a large, elaborate shield
+    of vegetal motifs that seem to burst forth with life, while the other appears
+    to be inspecting or assisting with the shield."
   yearMade: 1585
   tags: 000000000300000014000000
   isLandsape: 0
