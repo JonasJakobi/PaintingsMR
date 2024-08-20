@@ -108,17 +108,13 @@ public class FrameManager : MonoBehaviour
         Debug.Log("Picking new paintings");
 
         pickedPaintings = new List<PaintingData>();
-<<<<<<< Updated upstream
-        
-        foreach(var frame in frames){
-            if(frame == null){
-                continue;
-            }
-=======
 
         foreach (var frame in frames)
         {
->>>>>>> Stashed changes
+            if (frame == null)
+            {
+                continue;
+            }
             PickPaintingFor(frame);
         }
     }
@@ -163,6 +159,15 @@ public class FrameManager : MonoBehaviour
             if (tag.Value < 0)
                 dislikesText.text += tag.Key + ": " + tag.Value + "\n";
         }
+    }
+
+    public int GetLikesForTag(PaintingTag tag)
+    {
+        if (tagsLikeCounter.ContainsKey(tag))
+        {
+            return tagsLikeCounter[tag];
+        }
+        return 0;
     }
 
 
