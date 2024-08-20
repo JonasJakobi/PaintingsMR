@@ -26956,7 +26956,7 @@ MonoBehaviour:
   timeSinceNotPinching: 0
   timeSincePinching: 0
   pinchGraceTime: 0.1
-  startPlacingTime: 1
+  startPlacingTime: 0.3
 --- !u!4 &1535934002
 Transform:
   m_ObjectHideFlags: 0

@@ -11,10 +11,14 @@ public class PaintingUI : MonoBehaviour
     public TextMeshProUGUI author;
     public TextMeshProUGUI year;
     public TextMeshProUGUI description;
+    Transform headset;
+
+    public float disappearDistance = 1.8f;
 
     void Start()
     {
-        GetComponent<Canvas>().worldCamera = GameObject.Find("CenterEyeAnchor").GetComponent<Camera>();
+        headset = GameObject.Find("CenterEyeAnchor").transform;
+        GetComponent<Canvas>().worldCamera = headset.GetComponent<Camera>();
         //find frame in parent recursively
         Transform parent = transform.parent;
         while (parent != null)
@@ -27,6 +31,19 @@ public class PaintingUI : MonoBehaviour
             parent = parent.parent;
         }
         frame.GetComponent<PaintingObject>().RegisterUI(this);
+    }
+    private void Update() {
+        //only x and z
+        Vector3 framePos = frame.transform.position;
+        Vector3 headPos = headset.position;
+        framePos.y = 0;
+        headPos.y = 0;
+        if(Vector3.Distance(framePos,headPos) > disappearDistance){
+            GetComponent<Canvas>().enabled = false;
+        }
+        else{
+            GetComponent<Canvas>().enabled = true;
+        }
     }
 
  
