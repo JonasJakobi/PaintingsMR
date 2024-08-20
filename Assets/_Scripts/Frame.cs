@@ -3,6 +3,7 @@ using Meta.XR.MRUtilityKit;
 using OVR;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 public class Frame : MonoBehaviour {
     public static Frame Instance; 
     
@@ -61,11 +62,13 @@ public class Frame : MonoBehaviour {
         else{
             PlacementInputs();
         }
+
         if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Middle)){
             middleFingerTime += Time.deltaTime;
-            if(middleFingerTime > 2f){
+            if(middleFingerTime > 1.5f){
                 Debug.Log("Deleting everything!");
                 PlayerPrefs.DeleteAll();
+                SceneManager.LoadScene(0);
 
             }
         }

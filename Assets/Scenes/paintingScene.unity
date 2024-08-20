@@ -7452,7 +7452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4168084831800600886, guid: 24a51feae2dca5948914fd969c6dac32, type: 3}
       propertyPath: tutorialMessages.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4168084831800600886, guid: 24a51feae2dca5948914fd969c6dac32, type: 3}
       propertyPath: tutorialMessages.Array.data[0]
@@ -7464,16 +7464,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4168084831800600886, guid: 24a51feae2dca5948914fd969c6dac32, type: 3}
       propertyPath: tutorialMessages.Array.data[2]
-      value: Give a thumbs up or down if you like/dislike the painting.
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168084831800600886, guid: 24a51feae2dca5948914fd969c6dac32, type: 3}
-      propertyPath: tutorialMessages.Array.data[3]
       value: To move a frame, press the move toggle button next to it and pinch to
         move it.
       objectReference: {fileID: 0}
     - target: {fileID: 4168084831800600886, guid: 24a51feae2dca5948914fd969c6dac32, type: 3}
+      propertyPath: tutorialMessages.Array.data[3]
+      value: Give a thumbs up or down if you like/dislike the painting.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168084831800600886, guid: 24a51feae2dca5948914fd969c6dac32, type: 3}
       propertyPath: tutorialMessages.Array.data[4]
-      value: Enjoy. you can use the close button now to disable the tutorial
+      value: Your feedback will change what paintings show up from now on :)
       objectReference: {fileID: 0}
     - target: {fileID: 4168084831800600886, guid: 24a51feae2dca5948914fd969c6dac32, type: 3}
       propertyPath: tutorialMessages.Array.data[5]

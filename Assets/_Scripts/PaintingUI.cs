@@ -67,6 +67,9 @@ public class PaintingUI : MonoBehaviour
     }
 
     public void SetNewPainting(PaintingData data){
+        if(GetComponent<Canvas>().enabled == false) {
+            return;
+        }
         title.text = "<b>Title: </b>" +  data.title;
         author.text = "<b>Author: </b>" + data.artist;
         if(data.yearMade == 0 || data.yearMade == -1 || data.yearMade == 9999){
