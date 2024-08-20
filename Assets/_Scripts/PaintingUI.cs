@@ -82,4 +82,7 @@ public class PaintingUI : MonoBehaviour
             Frame.Instance.DisableObjectToMove();
         }
     }
+    public void TurnOffMovePainting(){
+        Frame.Instance.DisableObjectToMove();
+    }
 }
