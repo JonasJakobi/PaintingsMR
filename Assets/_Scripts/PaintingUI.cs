@@ -21,13 +21,16 @@ public class PaintingUI : MonoBehaviour
     Transform headset;
 
     public float disappearDistance = 1.8f;
+    public float charShowSpeed = 0.01f;
 
     void Start()
     {
         headset = GameObject.Find("CenterEyeAnchor").transform;
         GetComponent<Canvas>().worldCamera = headset.GetComponent<Camera>();
+        frame = GetComponentInParent<PaintingObject>();
+        frame.RegisterUI(this);
         //find frame in parent recursively
-        Transform parent = transform.parent;
+        /*Transform parent = transform.parent;
         while (parent != null)
         {
             frame = parent.GetComponent<PaintingObject>();
@@ -37,7 +40,7 @@ public class PaintingUI : MonoBehaviour
             }
             parent = parent.parent;
         }
-        frame.GetComponent<PaintingObject>().RegisterUI(this);
+        frame.GetComponent<PaintingObject>().RegisterUI(this);*/
     }
     private void Update() {
         //only x and z
@@ -79,7 +82,19 @@ public class PaintingUI : MonoBehaviour
         else{
             description.text = "<b>Description: </b>" + data.description;
         }
+        StartCoroutine(ShowText(title));
+        StartCoroutine(ShowText(author));
+        StartCoroutine(ShowText(year));
+        StartCoroutine(ShowText(description));
+    }
 
+    private IEnumerator ShowText(TextMeshProUGUI text){
+        text.maxVisibleCharacters = 0;
+        int totalChars = text.text.Length;
+        for(int i = 0; i < totalChars; i++){
+            text.maxVisibleCharacters = i;
+            yield return new WaitForSeconds(charShowSpeed);
+        }
     }
 
 
@@ -98,5 +113,10 @@ public class PaintingUI : MonoBehaviour
     public void TurnOffMovePainting(){
         toggleSymbol.color = Color.white;
         Frame.Instance.DisableObjectToMove();
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }

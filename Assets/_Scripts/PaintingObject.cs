@@ -18,11 +18,6 @@ public class PaintingObject : MonoBehaviour
         paintingUI = ui;
     }
     
-    private void Start() {
-        
-       
-
-    }
     public void Initialize( ){
         frameData = new FrameData();
          //Instantiate a blank gameobject
