@@ -183,7 +183,6 @@ public class FrameManager : MonoBehaviour {
                         var frame = Frame.Instance.HaveFrameBePaintingObject(frameData.startPosAtCreation, frameData.endPosAtCreation, false);
                         frame.transform.SetParent(spatialAnchor.transform);
                         frame.transform.localPosition = frameData.offsetFromSpatialAnchor;
-                        frames.Add(frame);
                     }
                     else
                     {
