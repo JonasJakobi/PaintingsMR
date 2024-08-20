@@ -47,8 +47,10 @@ public class PaintingUI : MonoBehaviour
         headPos.y = 0;
         if(Vector3.Distance(framePos,headPos) > disappearDistance){
             GetComponent<Canvas>().enabled = false;
-            TurnOffMovePainting();
-            toggle.isOn = false;
+            if(toggle.isOn){
+                TurnOffMovePainting();
+            }
+            
         }
         else{
             GetComponent<Canvas>().enabled = true;
