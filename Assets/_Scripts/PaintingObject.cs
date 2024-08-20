@@ -95,6 +95,8 @@ public class PaintingObject : MonoBehaviour
 
         const float fadeDuration = 0.8f;
         const float scaledFactor = 0.37f;
+        const float scaledFactor2 = 0.67f;
+
 
         prevLikeValue = 0;
         var rend = GetComponentInChildren<SpriteRenderer>();
@@ -114,15 +116,20 @@ public class PaintingObject : MonoBehaviour
             rend.sprite = data.paintingSprite;
 
             // List of titles that require special scaling
-            var scaledTitles = new HashSet<string> { "Saul and David", "Niagara Falls", "Dissonanz" };
+            var scaledTitle = new HashSet<string> { "Saul and David" };
+            var scaledTitles = new HashSet<string> { "Niagara Falls", "Dissonanz" };
 
-            if (scaledTitles.Contains(data.title))
+            if (scaledTitle.Contains(data.title))
             {
                 rend.transform.localScale *= scaledFactor;
             }
+            else if (scaledTitles.Contains(data.title))
+            {
+                rend.transform.localScale *= scaledFactor2;
+            }
             else
             {
-                rend.transform.localScale = Vector3.one; // Reset to original scale
+                rend.transform.localScale = Vector3.one;
             }
 
             // Fade back in with the new sprite
