@@ -30,3 +30,9 @@ sysinfo.txt
 .DS_Store
 
 *.dwlt
+
+.vs/PaintingsMR/FileContentIndex/
+
+.vsconfig
+
+.vs/PaintingsMR/v17/
