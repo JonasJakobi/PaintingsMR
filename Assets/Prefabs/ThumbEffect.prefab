@@ -81,13 +81,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   moveSpeed: 0.2
-  thumbDestroyDelay: 3
   thumUpGo: {fileID: 4688812921638937065}
   thumbDownGo: {fileID: 739340806311919133}
   starRandomOffset: 0.1
   starSpawnDelay: 0.5
   starDestroyDelay: 2
   starPrefab: {fileID: 8386928811177977776, guid: 276faf581f18d8e469969a439c56f968, type: 3}
+  preferenceUpdatedText: {fileID: 6156452781990281195, guid: 90e42ebec2eff8b429aa843cdf1c32fd, type: 3}
 --- !u!95 &7990808898935845252
 Animator:
   serializedVersion: 5

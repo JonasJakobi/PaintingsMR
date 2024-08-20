@@ -7456,7 +7456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4168084831800600886, guid: 24a51feae2dca5948914fd969c6dac32, type: 3}
       propertyPath: tutorialMessages.Array.data[0]
-      value: 'Welcome to Artverse! Here is some quick help:'
+      value: Welcome to Artverse! Press the arrow for a quick tutorial.
       objectReference: {fileID: 0}
     - target: {fileID: 4168084831800600886, guid: 24a51feae2dca5948914fd969c6dac32, type: 3}
       propertyPath: tutorialMessages.Array.data[1]

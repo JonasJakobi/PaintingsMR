@@ -13,19 +13,30 @@ public class ThumbEffect : MonoBehaviour
     [SerializeField] private float starSpawnDelay, starDestroyDelay;
     [SerializeField] private Star starPrefab;
 
+    public GameObject preferenceUpdatedText;
+
     private Vector3 target;
 
     private float maxDistanceToTarget;
 
+    private bool spawned = false;
+
     private void Awake()
     {
         InvokeRepeating(nameof(SpawnStar), starSpawnDelay, starSpawnDelay);
+
         //Invoke(nameof(SetDespawnTrigger), thumbDestroyDelay);
     }
 
     private void Update()
     {
         MoveToTarget();
+        if(Vector3.Distance(transform.position, target) < 0.15f){
+            if(!spawned){
+                SpawnPreferenceUpdatedText();
+                spawned = true;
+            }
+        }
         if(Vector3.Distance(transform.position, target) < 0.1f)
         {
             SetDespawnTrigger();
@@ -57,5 +68,8 @@ public class ThumbEffect : MonoBehaviour
     private void SetDespawnTrigger()
     {
         GetComponent<Animator>().SetTrigger("Despawn");
+    }
+    private void SpawnPreferenceUpdatedText(){
+        Instantiate(preferenceUpdatedText, transform.position, Quaternion.identity);
     }
 }
