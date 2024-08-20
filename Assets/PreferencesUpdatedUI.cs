@@ -12,7 +12,7 @@ public class PreferencesUpdatedUI : MonoBehaviour
     {
         //start fading out the text over 4 seconds
         text = GetComponent<TextMeshProUGUI>();
-        text.DOFade(0, 2).OnComplete(() => Destroy(gameObject));
+        Destroy(gameObject, 2f);
         centerEye = GameObject.Find("CenterEyeAnchor").transform;
         transform.LookAt(centerEye, Vector3.up);
     }
