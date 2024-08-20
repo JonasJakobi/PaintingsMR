@@ -54,14 +54,14 @@ public class PaintingUI : MonoBehaviour
     }
 
     public void SetNewPainting(PaintingData data){
-        title.text = "<b> Title: </b>" +  data.title;
-        author.text = "<b> Author: </b>" + data.artist;
-        year.text = "<b> Year: </b>" + data.yearMade;
+        title.text = "<b>Title: </b>" +  data.title;
+        author.text = "<b>Author: </b>" + data.artist;
+        year.text = "<b>Year: </b>" + data.yearMade;
         if(data.description == ""){
-            description.text = "<b> Description: </b> <i> No description available </i>";
+            description.text = "<b>Description: </b> <i> No description available </i>";
         }
         else{
-            description.text = "<b> Description: </b>" + data.description;
+            description.text = "<b>Description: </b>" + data.description;
         }
 
     }

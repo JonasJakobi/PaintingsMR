@@ -83,10 +83,10 @@ public class PaintingObject : MonoBehaviour
             Debug.LogWarning("Trying to give like that was already given for value " + likeValue);
             return;
         }
-        //reset previous like value
         if(prevLikeValue != 0){
             Debug.Log("Removing previous like value " + prevLikeValue);
         }
+        //reset previous like value
         int likeAdjusted = -prevLikeValue + likeValue;
         FrameManager.Instance.GiveLikes(frameData.paintingData.tags, likeAdjusted);
         prevLikeValue = likeValue;

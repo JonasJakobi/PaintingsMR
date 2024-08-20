@@ -15,7 +15,7 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 1727aabb68f0b924196bd99be217b869, type: 3}
   artist: Juan Gris (S
   title: Still Life with a Guitar
-  description: Still Life with a Guitar
+  description: 
   yearMade: 1913
   tags: 00000000
   isLandsape: 1
