@@ -37,6 +37,8 @@ public class Frame : MonoBehaviour {
     public float pinchGraceTime = 0.07f;
     public float startPlacingTime = 1f;
 
+    public float middleFingerTime = 0f;
+
     private void Start() {
         Instance = this;
         //create a frame
@@ -60,6 +62,17 @@ public class Frame : MonoBehaviour {
         }
         else{
             PlacementInputs();
+        }
+        if(usingHand.GetFingerIsPinching(OVRHand.HandFinger.Middle)){
+            middleFingerTime += Time.deltaTime;
+            if(middleFingerTime > 2f){
+                Debug.Log("Deleting everything!");
+                PlayerPrefs.DeleteAll();
+
+            }
+        }
+        else{
+            middleFingerTime = 0f;
         }
         
     }
@@ -128,10 +141,12 @@ public class Frame : MonoBehaviour {
         framePart4.transform.SetParent(bg.transform);
         isPlacing = false;
         if(bg.transform.localScale.x + bg.transform.localScale.y < minSize){
+            Debug.Log("Too small, destroying painting");
             Destroy(bg.gameObject);
             return;
         }//else if the ratio between x scale and y scale is bigger than 
         else if(bg.transform.localScale.x / bg.transform.localScale.y > maxRatioDifference || bg.transform.localScale.y / bg.transform.localScale.x > maxRatioDifference){
+            Debug.Log("ratio too big, destroying painting");
             Destroy(bg.gameObject);
             return;
         }
@@ -150,6 +165,7 @@ public class Frame : MonoBehaviour {
         var scale = bg.transform.localScale;
         bg.transform.localScale = new Vector3(0, 0, 0);
         bg.transform.DOScale(scale, 1f).SetEase(Ease.OutBack);
+        
 
         return obj;
     }
@@ -161,6 +177,8 @@ public class Frame : MonoBehaviour {
         ui.transform.parent = uispot;
        // ui.transform.localPosition = new Vector3(0,0,0);
         //TODO populate data
+        ui.GetComponentInChildren<PaintingUI>().SetNewPainting(obj.frameData.paintingData);
+
     }
 
    
@@ -184,7 +202,7 @@ public class Frame : MonoBehaviour {
     public void UpdateFrames(Vector3 startPos, Vector3 endPos){
         Vector3 surfaceNormal = Vector3.Cross(endPos - startPos, Vector3.up).normalized;
         //check if the surface normal is pointing towards the user more then away from the user
-        bool pointingInHandDiretion = Vector3.Dot(surfaceNormal, (indexTip.position - startPos).normalized) < 0;
+        bool pointingInHandDiretion = Vector3.Dot(surfaceNormal, (new Vector3(0,0,0) - startPos).normalized) < 0;
         if(!pointingInHandDiretion){
             surfaceNormal = -surfaceNormal;
         }

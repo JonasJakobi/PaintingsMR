@@ -118,6 +118,7 @@ public class PaintingObject : MonoBehaviour
 
         // Wait for the async creation
         yield return new WaitUntil(() => anchor.GetComponent<OVRSpatialAnchor>().Created);
+        OnSaveButtonPressed();
 
     }
 

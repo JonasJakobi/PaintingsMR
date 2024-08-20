@@ -64,7 +64,13 @@ public class PaintingUI : MonoBehaviour
     public void SetNewPainting(PaintingData data){
         title.text = "<b>Title: </b>" +  data.title;
         author.text = "<b>Author: </b>" + data.artist;
-        year.text = "<b>Year: </b>" + data.yearMade;
+        if(data.yearMade == 0 || data.yearMade == -1 || data.yearMade == 9999){
+            year.text = "<b>Year: </b> <i> Unknown </i>";
+        }
+        else{
+            year.text = "<b>Year: </b>" + data.yearMade;
+        }
+        
         if(data.description == ""){
             description.text = "<b>Description: </b> <i> No description available </i>";
         }

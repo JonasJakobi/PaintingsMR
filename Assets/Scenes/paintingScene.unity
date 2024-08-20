@@ -1401,7 +1401,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SceneLoadedEvent>k__BackingField:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 412158297}
+        m_TargetAssemblyTypeName: FrameManager, Assembly-CSharp
+        m_MethodName: StartLoadingAnchors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   <RoomCreatedEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
@@ -26946,7 +26958,7 @@ MonoBehaviour:
   uiPrefab: {fileID: 2978774235118637356, guid: 4e803cd5363e3e1469380726f5b8dfbf, type: 3}
   offset: 0.02
   minSize: 0.3
-  maxRatioDifference: 3
+  maxRatioDifference: 2
   bg: {fileID: 0}
   usingHand: {fileID: 1057229086}
   startPos: {x: 0, y: 0, z: 0}
