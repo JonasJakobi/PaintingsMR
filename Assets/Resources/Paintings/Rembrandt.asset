@@ -15,7 +15,12 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 6a9d61ded39872f46802a40756e1868b, type: 3}
   artist: 'Rembrandt '
   title: Saul and David
-  description: 
-  yearMade: 0
+  description: The painting depicts Saul, the king of the Israelites. He is visually
+    touched by the harp playing. The depicted situation comes from 1 Samuel 16:14-23
+    and 1 Samuel 18:8-11, in which King Saul is abandoned by the Holy Spirit, and
+    God sends him an evil spirit. It taunts Saul, and only David's harp playing can
+    relax him. Later David married Michal, one of Saul's daughters. He eventually
+    succeeded his father-in-law as King of the Israelites.
+  yearMade: 1660
   tags: 0100000002000000
   isLandsape: 1

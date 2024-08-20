@@ -15,7 +15,12 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 9a7d4b061cbd36544959aa8f2c3877e4, type: 3}
   artist: Vincent van Gogh
   title: 'Self-Portrait '
-  description: n/a
+  description: "Vincent van Gogh's \"Self-Portrait\" is a compelling testament to
+    the artist's introspective nature and emotional depth. Painted in 1889, this
+    work is one of many self-portraits van Gogh created throughout his short but
+    prolific career. Characterized by his expressive brushwork and bold use of color,
+    this painting reveals van Gogh's state of mind during his time at the Saint-Paul-de-Mausole
+    asylum in Saint-R\xE9my, France"
   yearMade: 1889
   tags: 070000000f000000
   isLandsape: 0
