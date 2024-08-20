@@ -63,7 +63,7 @@ public class PaintingObject : MonoBehaviour
 
             if(data.title == "Saul and David"){
                 Vector3 currentScale = rend.transform.localScale;
-                rend.transform.localScale = new Vector3(currentScale.x*0.5f,currentScale.y*0.5f,currentScale.z);
+                rend.transform.localScale = new Vector3(currentScale.x*0.4f,currentScale.y*0.4f,currentScale.z);
 
             }
             else
