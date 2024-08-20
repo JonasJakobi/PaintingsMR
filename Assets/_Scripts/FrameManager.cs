@@ -199,7 +199,7 @@ public class FrameManager : MonoBehaviour
                         FrameData frameData = JsonUtility.FromJson<FrameData>(PlayerPrefs.GetString(unboundAnchor.Uuid.ToString()));
                         Frame.Instance.InitializeFrames();
                         Frame.Instance.UpdateFrames(frameData.startPosAtCreation, frameData.endPosAtCreation);
-                        if(!Frame.Instance.FinishFrame())
+                        if(Frame.Instance.FinishFrame())
                         {
                             var frame = Frame.Instance.HaveFrameBePaintingObject(frameData.startPosAtCreation, frameData.endPosAtCreation, false);
                             frame.transform.SetParent(spatialAnchor.transform);
