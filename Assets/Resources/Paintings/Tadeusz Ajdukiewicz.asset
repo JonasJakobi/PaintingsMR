@@ -15,7 +15,7 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: e7406d964e07b5b418a404311f857555, type: 3}
   artist: 'Tadeusz Ajdukiewicz '
   title: 'Arab on a grey horse '
-  description: 'Arab on a grey horse '
+  description: 
   yearMade: 0
   tags: 02000000080000000d000000
   isLandsape: 0

@@ -7,6 +7,7 @@ using System.Linq;
 using Unity.VisualScripting;
 //MRUK
 using Meta.XR.MRUtilityKit;
+using TMPro;
 
 
 public class FrameManager : MonoBehaviour {
@@ -21,6 +22,8 @@ public class FrameManager : MonoBehaviour {
     public static FrameManager Instance;
 
     public float newPaintingsInterval = 10f;
+
+    [SerializeField] private TextMeshProUGUI likesText, dislikesText;
     
     
     
@@ -40,6 +43,9 @@ public class FrameManager : MonoBehaviour {
         foreach(PaintingTag tag in Enum.GetValues(typeof(PaintingTag))){
             tagsLikeCounter.Add(tag, 0);
         }
+
+        UpdateLikeText();
+        UpdateDislikeText();
     }
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Space)){
@@ -112,6 +118,26 @@ public class FrameManager : MonoBehaviour {
         {
             tagsLikeCounter[tag] += value;
             Debug.Log("Giving likes to " + tag + " with value " + value + " is now " + tagsLikeCounter[tag]);
+        }
+        UpdateLikeText();
+        UpdateDislikeText();
+    }
+
+    private void UpdateLikeText(){
+        likesText.text = "<b>Likes:</b>\n";
+        foreach (var tag in tagsLikeCounter)
+        {
+            if (tag.Value > 0)
+                likesText.text += tag.Key + ": " + tag.Value + "\n";
+        }
+    }
+
+    private void UpdateDislikeText(){
+        dislikesText.text = "<b>Dislikes:</b>\n";
+        foreach (var tag in tagsLikeCounter)
+        {
+            if (tag.Value < 0)
+                dislikesText.text += tag.Key + ": " + tag.Value + "\n";
         }
     }
        

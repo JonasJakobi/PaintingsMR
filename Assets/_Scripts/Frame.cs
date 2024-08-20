@@ -36,12 +36,13 @@ public class Frame : MonoBehaviour {
     public float timeSincePinching = 0f;
     public float pinchGraceTime = 0.07f;
     public float startPlacingTime = 1f;
+
     private void Start() {
         Instance = this;
         //create a frame
-        //InitializeFrames();
-        //UpdateFrames(new Vector3(0,0,0), new Vector3(2,5,5));
-        //FinishFrame();
+        /*InitializeFrames();
+        TestWithoutIndex(new Vector3(1,1,1), new Vector3(2,2,3));
+        FinishFrame();*/
         //Find gameobject with name Hand_IndexTip in usingHand child
         indexTip = usingHand.transform.FindChildRecursive("Hand_IndexTip");
     }
@@ -150,10 +151,7 @@ public class Frame : MonoBehaviour {
         bg.transform.localScale = new Vector3(0, 0, 0);
         bg.transform.DOScale(scale, 1f).SetEase(Ease.OutBack);
 
-        
-
         return obj;
-        
     }
 
     public void InitPaintingUI(PaintingObject obj){
@@ -164,6 +162,8 @@ public class Frame : MonoBehaviour {
        // ui.transform.localPosition = new Vector3(0,0,0);
         //TODO populate data
     }
+
+   
 
     public Vector3 GetClosestMRUK(Vector3 point){
         
@@ -193,32 +193,27 @@ public class Frame : MonoBehaviour {
         //create the first cube
         
         framePart1.transform.position = new Vector3(startPos.x, (startPos.y + endPos.y ) / 2,startPos.z );
-        framePart1.transform.localScale = new Vector3(offset, Mathf.Abs(endPos.y - startPos.y), offset);
+        framePart1.transform.localScale = new Vector3(offset, Mathf.Abs(endPos.y - startPos.y) - offset, offset);
         framePart1.transform.rotation = Quaternion.LookRotation(surfaceNormal, Vector3.up);
 
         //create the second cube
         framePart2.transform.position = new Vector3(endPos.x, (startPos.y + endPos.y ) / 2,endPos.z );
-        framePart2.transform.localScale = new Vector3(offset, Mathf.Abs(endPos.y - startPos.y), offset);
+        framePart2.transform.localScale = new Vector3(offset, Mathf.Abs(endPos.y - startPos.y) - offset, offset);
         framePart2.transform.rotation = Quaternion.LookRotation(surfaceNormal, Vector3.up);
 
         //third and fourth cube should go along the top and bottom of the frame, le
-        framePart3.transform.position = new Vector3((startPos.x + endPos.x) / 2, startPos.y, (startPos.z + endPos.z) / 2);
-        framePart3.transform.localScale = new Vector3(offset + Mathf.Sqrt(Mathf.Abs(startPos.x - endPos.x) * Mathf.Abs(startPos.x - endPos.x) + Mathf.Abs(startPos.z - endPos.z) * Mathf.Abs(startPos.z - endPos.z)), offset, offset);
-        framePart3.transform.rotation = Quaternion.LookRotation(surfaceNormal, Vector3.up);
-//
-        //third and fourth cube should go along the top and bottom of the frame, length of distance between start and end along x and z axis
-          framePart4.transform.position = new Vector3((startPos.x + endPos.x) / 2, endPos.y, (startPos.z + endPos.z) / 2);
-        framePart4.transform.localScale = new Vector3(offset + Mathf.Sqrt(Mathf.Abs(startPos.x - endPos.x) * Mathf.Abs(startPos.x - endPos.x) + Mathf.Abs(startPos.z - endPos.z) * Mathf.Abs(startPos.z - endPos.z)), offset, offset);
-        //        framePart.transform.localScale = new Vector3(Mathf.Abs(endPos.x - startPos.x), offset, offset);
+        framePart3.transform.position = new Vector3((startPos.x + endPos.x) / 2, startPos.y, (startPos.z + endPos.z) / 2); // Positioned between frame 1 and 2 on X-axis, at the start Y position
+        framePart3.transform.localScale = new Vector3(offset, offset + Mathf.Sqrt(Mathf.Abs(startPos.x - endPos.x) * Mathf.Abs(startPos.x - endPos.x) + Mathf.Abs(startPos.z - endPos.z) * Mathf.Abs(startPos.z - endPos.z)), offset); // Scaling along the Y-axis (now Y component)
+        framePart3.transform.rotation = Quaternion.LookRotation(surfaceNormal, Vector3.right); // Rotating by 90 degrees around Z-axis
 
-        framePart4.transform.rotation = Quaternion.LookRotation(surfaceNormal, Vector3.up);
+        // Frame Part 4
+        framePart4.transform.position = new Vector3((startPos.x + endPos.x) / 2, endPos.y, (startPos.z + endPos.z) / 2); // Positioned between frame 1 and 2 on X-axis, at the end Y position
+        framePart4.transform.localScale = new Vector3(offset, offset + Mathf.Sqrt(Mathf.Abs(startPos.x - endPos.x) * Mathf.Abs(startPos.x - endPos.x) + Mathf.Abs(startPos.z - endPos.z) * Mathf.Abs(startPos.z - endPos.z)), offset); // Scaling along the Y-axis (now Y component)
+        framePart4.transform.rotation = Quaternion.LookRotation(surfaceNormal, Vector3.right); // Rotating by 90 degrees around Z-axis
     
         bg.transform.rotation = Quaternion.LookRotation(surfaceNormal, Vector3.up);
         bg.transform.position = new Vector3((startPos.x + endPos.x) / 2, (startPos.y + endPos.y) / 2, (startPos.z + endPos.z) / 2);
         bg.transform.localScale = new Vector3(Mathf.Sqrt(Mathf.Abs(startPos.x - endPos.x) * Mathf.Abs(startPos.x - endPos.x) + Mathf.Abs(startPos.z - endPos.z) * Mathf.Abs(startPos.z - endPos.z)) - offset/2, Mathf.Abs(endPos.y - startPos.y) - offset/2, 0.01f);
         
-    }   
-
-
-    
+    }
 }

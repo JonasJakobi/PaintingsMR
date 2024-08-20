@@ -13,7 +13,10 @@ public class PaintingObject : MonoBehaviour
 
     //-2: 2 dislikes, -1: 1 dislike, 1: 1 like, 2: 2 likes
     private int prevLikeValue = 0;
-
+    private PaintingUI paintingUI;
+     public void RegisterUI(PaintingUI ui){
+        paintingUI = ui;
+    }
     
     private void Start() {
         
@@ -62,6 +65,7 @@ public class PaintingObject : MonoBehaviour
             frameData.paintingData = data;
             rend.sprite = data.paintingSprite;
             rend.DOColor(new Color(1,1,1,1), 0.8f);
+            paintingUI.SetNewPainting(data);
         });
     }
     public bool isLandsape(){
@@ -79,10 +83,10 @@ public class PaintingObject : MonoBehaviour
             Debug.LogWarning("Trying to give like that was already given for value " + likeValue);
             return;
         }
-        //reset previous like value
         if(prevLikeValue != 0){
             Debug.Log("Removing previous like value " + prevLikeValue);
         }
+        //reset previous like value
         int likeAdjusted = -prevLikeValue + likeValue;
         FrameManager.Instance.GiveLikes(frameData.paintingData.tags, likeAdjusted);
         prevLikeValue = likeValue;
