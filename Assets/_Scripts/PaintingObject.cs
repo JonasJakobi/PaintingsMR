@@ -14,57 +14,125 @@ public class PaintingObject : MonoBehaviour
     //-2: 2 dislikes, -1: 1 dislike, 1: 1 like, 2: 2 likes
     private int prevLikeValue = 0;
     private PaintingUI paintingUI;
-     public void RegisterUI(PaintingUI ui){
+    public void RegisterUI(PaintingUI ui)
+    {
         paintingUI = ui;
     }
-    
-    public void Initialize( ){
-        frameData = new FrameData();
-         //Instantiate a blank gameobject
 
-        paintingRenderer =new GameObject("Painting Renderer").AddComponent<SpriteRenderer>();
+    public void Initialize()
+    {
+        frameData = new FrameData();
+        //Instantiate a blank gameobject
+
+        paintingRenderer = new GameObject("Painting Renderer").AddComponent<SpriteRenderer>();
         paintingRenderer.transform.position = this.transform.position;
         paintingRenderer.transform.rotation = this.transform.rotation;
-        
 
-        if(isLandsape()){
-            paintingRenderer.transform.localScale = new Vector3(transform.localScale.y,transform.localScale.y,1);
+
+        if (isLandsape())
+        {
+            paintingRenderer.transform.localScale = new Vector3(transform.localScale.y, transform.localScale.y, 1);
         }
-        else{
-            paintingRenderer.transform.localScale = new Vector3(transform.localScale.x,transform.localScale.x,1);
+        else
+        {
+            paintingRenderer.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.x, 1);
 
         }
         paintingRenderer.transform.parent = this.transform;
-        paintingRenderer.transform.localPosition = new Vector3(paintingRenderer.transform.localPosition.x,paintingRenderer.transform.localPosition.y,paintingRenderer.transform.localPosition.z-1f);
+        paintingRenderer.transform.localPosition = new Vector3(paintingRenderer.transform.localPosition.x, paintingRenderer.transform.localPosition.y, paintingRenderer.transform.localPosition.z - 1f);
 
-        
+
         FrameManager.Instance.frames.Add(this);
 
 
     }
 
-    public void SetStartAndEndPointWhenFinishingCreation(Vector3 startpos, Vector3 endPos){
+    public void SetStartAndEndPointWhenFinishingCreation(Vector3 startpos, Vector3 endPos)
+    {
         frameData.startPosAtCreation = startpos;
         frameData.endPosAtCreation = endPos;
     }
 
+    // public void LoadPaintingData(PaintingData data)
+    // {
+    //     prevLikeValue = 0;
+    //     var rend = GetComponentInChildren<SpriteRenderer>();
+    //     float initialdelay = 0.8f;
+    //     const float scaledFactor = 0.37f;
+
+    //     if (rend.sprite == null)
+    //     {
+    //         initialdelay = 0;
+    //     }
+    //     //DO fade to transparent, change sprite, fade back to visible
+    //     rend.DOColor(new Color(1, 1, 1, 0), initialdelay).OnComplete(() =>
+    //     {
+    //         frameData.paintingData = data;
+    //         rend.sprite = data.paintingSprite;
+
+    //         if (data.title == "Saul and David" || data.title == "Niagara Falls" || data.title == "Dissonanz")
+    //         {
+    //             Vector3 currentScale = rend.transform.localScale;
+    //             rend.transform.localScale = new Vector3(currentScale.x * 0.37f, currentScale.y * 0.37f, currentScale.z);
+
+    //         }
+    //         else
+    //         {
+    //             rend.transform.localScale = new Vector3(1, 1, 1);
+    //         }
+    //         rend.DOColor(new Color(1, 1, 1, 1), 0.8f);
+    //         paintingUI.SetNewPainting(data);
+    //     });
+    // }
+
     public void LoadPaintingData(PaintingData data)
     {
+        if (data == null)
+        {
+            Debug.LogError("Painting data is null.");
+            return;
+        }
+
+        const float fadeDuration = 0.8f;
+        const float scaledFactor = 0.37f;
+
         prevLikeValue = 0;
         var rend = GetComponentInChildren<SpriteRenderer>();
-        float initialdelay = 0.8f;
-        if(rend.sprite == null){
-            initialdelay = 0;
+
+        if (rend == null)
+        {
+            Debug.LogError("SpriteRenderer component is missing.");
+            return;
         }
-        //DO fade to transparent, change sprite, fade back to visible
-        rend.DOColor(new Color(1,1,1,0), initialdelay).OnComplete(() => {
+
+        float initialDelay = (rend.sprite == null) ? 0 : fadeDuration;
+
+        // Fade out the current sprite
+        rend.DOColor(new Color(1, 1, 1, 0), initialDelay).OnComplete(() =>
+        {
             frameData.paintingData = data;
             rend.sprite = data.paintingSprite;
-            rend.DOColor(new Color(1,1,1,1), 0.8f);
+
+            // List of titles that require special scaling
+            var scaledTitles = new HashSet<string> { "Saul and David", "Niagara Falls", "Dissonanz" };
+
+            if (scaledTitles.Contains(data.title))
+            {
+                rend.transform.localScale *= scaledFactor;
+            }
+            else
+            {
+                rend.transform.localScale = Vector3.one; // Reset to original scale
+            }
+
+            // Fade back in with the new sprite
+            rend.DOColor(new Color(1, 1, 1, 1), fadeDuration);
             paintingUI.SetNewPainting(data);
         });
     }
-    public bool isLandsape(){
+
+    public bool isLandsape()
+    {
         return transform.localScale.x > transform.localScale.y;
     }
 
@@ -73,13 +141,16 @@ public class PaintingObject : MonoBehaviour
         return likeValue != prevLikeValue;
     }
 
-    public void GiveLike(int likeValue){
+    public void GiveLike(int likeValue)
+    {
         //nothing changed, should've been checked before
-        if(likeValue == prevLikeValue){
+        if (likeValue == prevLikeValue)
+        {
             Debug.LogWarning("Trying to give like that was already given for value " + likeValue);
             return;
         }
-        if(prevLikeValue != 0){
+        if (prevLikeValue != 0)
+        {
             Debug.Log("Removing previous like value " + prevLikeValue);
         }
         //reset previous like value
@@ -104,7 +175,7 @@ public class PaintingObject : MonoBehaviour
 
     //---------------Spatial Anchor Stuff -----------
     public IEnumerator CreateSpatialAnchor()
-    {   
+    {
         //Instantiate an anchor
         var anchor = new GameObject("Anchor");
         anchor.transform.position = transform.position;
@@ -158,5 +229,5 @@ public class PaintingObject : MonoBehaviour
         }
     }
 
-  
+
 }
