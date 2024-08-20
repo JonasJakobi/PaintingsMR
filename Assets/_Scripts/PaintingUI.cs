@@ -82,6 +82,7 @@ public class PaintingUI : MonoBehaviour
         else{
             description.text = "<b>Description: </b>" + data.description;
         }
+        StopAllCoroutines();
         StartCoroutine(ShowText(title));
         StartCoroutine(ShowText(author));
         StartCoroutine(ShowText(year));

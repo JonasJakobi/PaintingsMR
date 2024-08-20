@@ -6,9 +6,7 @@ using DG.Tweening;
 public class Frame : MonoBehaviour {
     public static Frame Instance; 
     
-    public GameObject framePartPrefab;
-    public GameObject bgPrefab;
-    public GameObject uiPrefab;
+    public GameObject framePartPrefab, bgPrefab, uiPrefab, spawnEffectPrefab;
     public float offset = 0.02f;
     public float minSize = 0.1f;
     public float maxRatioDifference = 2f;
@@ -101,6 +99,7 @@ public class Frame : MonoBehaviour {
             }
             if(!isPlacing){//start placing
                 startPos = ClosestWallPos(indexTip.position);
+                Instantiate(spawnEffectPrefab, startPos, Quaternion.identity);
                 InitializeFrames();
             }//update the frame
             isPlacing = true;
@@ -112,8 +111,8 @@ public class Frame : MonoBehaviour {
                 if(timeSinceNotPinching > pinchGraceTime){
                     timeSincePinching = 0f;
                     //end placing
-                    FinishFrame();
-                    HaveFrameBePaintingObject(startPos, ClosestWallPos(indexTip.position));
+                    if(FinishFrame())
+                        HaveFrameBePaintingObject(startPos, ClosestWallPos(indexTip.position));
                 }
                 else{
                     timeSinceNotPinching += Time.deltaTime;
@@ -133,7 +132,7 @@ public class Frame : MonoBehaviour {
     }
 
     
-    public void FinishFrame(){
+    public bool FinishFrame(){
         
         framePart1.transform.SetParent(bg.transform);
         framePart2.transform.SetParent(bg.transform);
@@ -143,13 +142,14 @@ public class Frame : MonoBehaviour {
         if(bg.transform.localScale.x + bg.transform.localScale.y < minSize){
             Debug.Log("Too small, destroying painting");
             Destroy(bg.gameObject);
-            return;
+            return false;
         }//else if the ratio between x scale and y scale is bigger than 
         else if(bg.transform.localScale.x / bg.transform.localScale.y > maxRatioDifference || bg.transform.localScale.y / bg.transform.localScale.x > maxRatioDifference){
             Debug.Log("ratio too big, destroying painting");
             Destroy(bg.gameObject);
-            return;
+            return false;
         }
+        return true;
         
         
     }
@@ -157,10 +157,13 @@ public class Frame : MonoBehaviour {
         var obj = bg.AddComponent<PaintingObject>();
         obj.Initialize();
         obj.SetStartAndEndPointWhenFinishingCreation(startPos, endPos);
+
+        FrameManager.Instance.PickPaintingFor(obj);
+        
+        InitPaintingUI( obj);
         if(needsAnchor){
             StartCoroutine(obj.CreateSpatialAnchor());
         }
-        InitPaintingUI( obj);
         bg = obj.gameObject;
         var scale = bg.transform.localScale;
         bg.transform.localScale = new Vector3(0, 0, 0);

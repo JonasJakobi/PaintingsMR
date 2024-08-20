@@ -27147,6 +27147,7 @@ MonoBehaviour:
   framePartPrefab: {fileID: 6440079647784447490, guid: 0ce26ec56bfeb3c4cac047fbcd7c4c56, type: 3}
   bgPrefab: {fileID: 6440079647784447490, guid: ba31d2aecff04eb4fafc4fe39aabb586, type: 3}
   uiPrefab: {fileID: 2978774235118637356, guid: 4e803cd5363e3e1469380726f5b8dfbf, type: 3}
+  spawnEffectPrefab: {fileID: 5443225286183466334, guid: e60ec81ca392d654ba6f675df8fcfe01, type: 3}
   offset: 0.02
   minSize: 0.3
   maxRatioDifference: 2

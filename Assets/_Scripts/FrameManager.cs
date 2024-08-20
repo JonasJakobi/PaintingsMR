@@ -87,12 +87,6 @@ public class FrameManager : MonoBehaviour
         }
     }
 
-    public void RegisterNewFrame(PaintingObject obj)
-    {
-        frames.Add(obj);
-        PickPaintingFor(obj);
-    }
-
     public IEnumerator PickNewPaintingsRoutine()
     {
         //Wait for the interval, pick new, go again
@@ -205,10 +199,13 @@ public class FrameManager : MonoBehaviour
                         FrameData frameData = JsonUtility.FromJson<FrameData>(PlayerPrefs.GetString(unboundAnchor.Uuid.ToString()));
                         Frame.Instance.InitializeFrames();
                         Frame.Instance.UpdateFrames(frameData.startPosAtCreation, frameData.endPosAtCreation);
-                        Frame.Instance.FinishFrame();
-                        var frame = Frame.Instance.HaveFrameBePaintingObject(frameData.startPosAtCreation, frameData.endPosAtCreation, false);
-                        frame.transform.SetParent(spatialAnchor.transform);
-                        frame.transform.localPosition = frameData.offsetFromSpatialAnchor;
+                        if(!Frame.Instance.FinishFrame())
+                        {
+                            var frame = Frame.Instance.HaveFrameBePaintingObject(frameData.startPosAtCreation, frameData.endPosAtCreation, false);
+                            frame.transform.SetParent(spatialAnchor.transform);
+                            frame.transform.localPosition = frameData.offsetFromSpatialAnchor;
+                        }
+                        
                     }
                     else
                     {
