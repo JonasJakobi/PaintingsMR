@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 public class PaintingUI : MonoBehaviour
 {
     public PaintingObject frame;
@@ -12,6 +13,10 @@ public class PaintingUI : MonoBehaviour
     public TextMeshProUGUI author;
     public TextMeshProUGUI year;
     public TextMeshProUGUI description;
+
+    public Toggle toggle;
+
+     
     Transform headset;
 
     public float disappearDistance = 1.8f;
@@ -67,7 +72,9 @@ public class PaintingUI : MonoBehaviour
     }
 
 
-    public void ToggleMovePainting(Boolean isOn){
+    public void ToggleMovePainting(bool isOn){
+        isOn = toggle.isOn;
+
         if(isOn){
             Frame.Instance.SetObjectToMove(frame.gameObject);
         }
