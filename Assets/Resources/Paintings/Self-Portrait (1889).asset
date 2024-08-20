@@ -15,7 +15,7 @@ MonoBehaviour:
   paintingSprite: {fileID: 21300000, guid: 9a7d4b061cbd36544959aa8f2c3877e4, type: 3}
   artist: Vincent van Gogh
   title: 'Self-Portrait '
-  description: 1889
-  yearMade: 188
+  description: 
+  yearMade: 1889
   tags: 070000000f000000
   isLandsape: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintingSprite: {fileID: 21300000, guid: c1cebe19ee7007b45905bf740a21d16a, type: 3}
   artist: 'Karl Wiener '
-  title: ' Allegro '
+  title: 'Allegro '
   description: Karl Wiener was an Austrian draftsman , graphic artist and photo montage
     artist. Because of his political and time-critical montages of the 1930s and
     1940s, he was posthumously referred to as the Austrian John Heartfield on the

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintingSprite: {fileID: 21300000, guid: b2954623034ce264a8313b6cce098f47, type: 3}
   artist: Vincent van Gogh
-  title: ' Cypresses '
+  title: 'Cypresses '
   description: 
   yearMade: 1889
   tags: 0600000008000000

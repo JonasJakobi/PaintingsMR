@@ -36,10 +36,10 @@ public class PaintingUI : MonoBehaviour
     }
 
     public void SetNewPainting(PaintingData data){
-        title.text = "<b> Title: </b>" +  data.title;
-        author.text = "<b> Author: </b>" + data.artist;
-        year.text = "<b> Year: </b>" + data.yearMade;
-        description.text = "<b> Description: </b>" + data.description;
+        title.text = "<b>Title: </b>" +  data.title;
+        author.text = "<b>Author: </b>" + data.artist;
+        year.text = "<b>Year: </b>" + data.yearMade;
+        description.text = "<b>Description: </b>" + data.description;
 
     }
 }
