@@ -92,6 +92,9 @@ public class FrameManager : MonoBehaviour {
         pickedPaintings = new List<PaintingData>();
         
         foreach(var frame in frames){
+            if(frame == null){
+                continue;
+            }
             PickPaintingFor(frame);
         }
     }

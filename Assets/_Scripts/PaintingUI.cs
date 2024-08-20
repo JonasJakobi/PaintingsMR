@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 public class PaintingUI : MonoBehaviour
 {
     public PaintingObject frame;
@@ -56,7 +57,22 @@ public class PaintingUI : MonoBehaviour
         title.text = "<b> Title: </b>" +  data.title;
         author.text = "<b> Author: </b>" + data.artist;
         year.text = "<b> Year: </b>" + data.yearMade;
-        description.text = "<b> Description: </b>" + data.description;
+        if(data.description == ""){
+            description.text = "<b> Description: </b> <i> No description available </i>";
+        }
+        else{
+            description.text = "<b> Description: </b>" + data.description;
+        }
 
+    }
+
+
+    public void ToggleMovePainting(Boolean isOn){
+        if(isOn){
+            Frame.Instance.SetObjectToMove(frame.gameObject);
+        }
+        else{
+            Frame.Instance.DisableObjectToMove();
+        }
     }
 }
