@@ -15,6 +15,7 @@ public class PaintingUI : MonoBehaviour
     public TextMeshProUGUI description;
 
     public Toggle toggle;
+    public Image toggleSymbol;
 
      
     Transform headset;
@@ -46,6 +47,8 @@ public class PaintingUI : MonoBehaviour
         headPos.y = 0;
         if(Vector3.Distance(framePos,headPos) > disappearDistance){
             GetComponent<Canvas>().enabled = false;
+            TurnOffMovePainting();
+            toggle.isOn = false;
         }
         else{
             GetComponent<Canvas>().enabled = true;
@@ -77,12 +80,15 @@ public class PaintingUI : MonoBehaviour
 
         if(isOn){
             Frame.Instance.SetObjectToMove(frame.gameObject);
+            toggleSymbol.color = Color.green;
         }
         else{
             Frame.Instance.DisableObjectToMove();
+            toggleSymbol.color = Color.white;
         }
     }
     public void TurnOffMovePainting(){
+        toggleSymbol.color = Color.white;
         Frame.Instance.DisableObjectToMove();
     }
 }
