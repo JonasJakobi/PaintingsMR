@@ -15,18 +15,22 @@ public class PaintingUI : MonoBehaviour
     public TextMeshProUGUI description;
 
     public Toggle toggle;
+    public Image toggleSymbol;
 
      
     Transform headset;
 
     public float disappearDistance = 1.8f;
+    public float charShowSpeed = 0.01f;
 
     void Start()
     {
         headset = GameObject.Find("CenterEyeAnchor").transform;
         GetComponent<Canvas>().worldCamera = headset.GetComponent<Camera>();
+        frame = GetComponentInParent<PaintingObject>();
+        frame.RegisterUI(this);
         //find frame in parent recursively
-        Transform parent = transform.parent;
+        /*Transform parent = transform.parent;
         while (parent != null)
         {
             frame = parent.GetComponent<PaintingObject>();
@@ -36,7 +40,7 @@ public class PaintingUI : MonoBehaviour
             }
             parent = parent.parent;
         }
-        frame.GetComponent<PaintingObject>().RegisterUI(this);
+        frame.GetComponent<PaintingObject>().RegisterUI(this);*/
     }
     private void Update() {
         //only x and z
@@ -46,6 +50,10 @@ public class PaintingUI : MonoBehaviour
         headPos.y = 0;
         if(Vector3.Distance(framePos,headPos) > disappearDistance){
             GetComponent<Canvas>().enabled = false;
+            if(toggle.isOn){
+                TurnOffMovePainting();
+            }
+            
         }
         else{
             GetComponent<Canvas>().enabled = true;
@@ -61,14 +69,32 @@ public class PaintingUI : MonoBehaviour
     public void SetNewPainting(PaintingData data){
         title.text = "<b>Title: </b>" +  data.title;
         author.text = "<b>Author: </b>" + data.artist;
-        year.text = "<b>Year: </b>" + data.yearMade;
+        if(data.yearMade == 0 || data.yearMade == -1 || data.yearMade == 9999){
+            year.text = "<b>Year: </b> <i> Unknown </i>";
+        }
+        else{
+            year.text = "<b>Year: </b>" + data.yearMade;
+        }
+        
         if(data.description == ""){
             description.text = "<b>Description: </b> <i> No description available </i>";
         }
         else{
             description.text = "<b>Description: </b>" + data.description;
         }
+        StartCoroutine(ShowText(title));
+        StartCoroutine(ShowText(author));
+        StartCoroutine(ShowText(year));
+        StartCoroutine(ShowText(description));
+    }
 
+    private IEnumerator ShowText(TextMeshProUGUI text){
+        text.maxVisibleCharacters = 0;
+        int totalChars = text.text.Length;
+        for(int i = 0; i < totalChars; i++){
+            text.maxVisibleCharacters = i;
+            yield return new WaitForSeconds(charShowSpeed);
+        }
     }
 
 
@@ -77,12 +103,20 @@ public class PaintingUI : MonoBehaviour
 
         if(isOn){
             Frame.Instance.SetObjectToMove(frame.gameObject);
+            toggleSymbol.color = Color.green;
         }
         else{
             Frame.Instance.DisableObjectToMove();
+            toggleSymbol.color = Color.white;
         }
     }
     public void TurnOffMovePainting(){
+        toggleSymbol.color = Color.white;
         Frame.Instance.DisableObjectToMove();
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }

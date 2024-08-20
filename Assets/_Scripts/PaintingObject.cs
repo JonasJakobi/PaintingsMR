@@ -18,11 +18,6 @@ public class PaintingObject : MonoBehaviour
         paintingUI = ui;
     }
     
-    private void Start() {
-        
-       
-
-    }
     public void Initialize( ){
         frameData = new FrameData();
          //Instantiate a blank gameobject
@@ -118,6 +113,7 @@ public class PaintingObject : MonoBehaviour
 
         // Wait for the async creation
         yield return new WaitUntil(() => anchor.GetComponent<OVRSpatialAnchor>().Created);
+        OnSaveButtonPressed();
 
     }
 
