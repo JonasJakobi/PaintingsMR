@@ -6,18 +6,14 @@ using System.Linq;
 
 public class PrefrenceFrameUpdaterManager : MonoBehaviour
 {
-    [SerializeField]
     private FrameManager frameManager;
 
     private Dictionary<PaintingTag, int> likesTally = new Dictionary<PaintingTag, int>();
 
     public float updateInterval = 10f;
 
-
     public Canvas notificationCanvas;
-    public Text notificationText;
-
-    void Start()
+    public Text notificationText; void Start()
     {
         frameManager = FrameManager.Instance;
 
@@ -57,23 +53,30 @@ public class PrefrenceFrameUpdaterManager : MonoBehaviour
 
         foreach (var frame in frameManager.frames)
         {
-            var matchingPaintings = frameManager.paintings.Where(p => p.tags.Intersect(sortedTags).Any()).ToList();
+            List<PaintingData> matchingPaintings = frameManager.paintings
+                .Where(p => p.tags.Intersect(sortedTags).Any() && p.isLandsape == frame.isLandsape())
+                .Where(p => !frameManager.pickedPaintings.Contains(p) && p != frame.frameData.paintingData)
+                .ToList();
 
             if (matchingPaintings.Count > 0)
             {
                 var selectedPainting = matchingPaintings[UnityEngine.Random.Range(0, matchingPaintings.Count)];
-
                 frame.frameData.paintingData = selectedPainting;
+                frameManager.pickedPaintings.Add(selectedPainting);
                 frame.LoadPaintingData(selectedPainting);
+                Debug.Log($"Frame updated with painting '{selectedPainting.name}' based on preferences.");
 
                 StartCoroutine(DisplayUpdateNotification(frame));
+                Debug.Log("Updated painting for frame " + frame.name);
+                Debug.Log("list of matching paints: " + matchingPaintings);
+
             }
         }
     }
 
     IEnumerator DisplayUpdateNotification(PaintingObject frame)
     {
-        notificationText.text = "Paintings updated according to preference!";
+        notificationText.text = "Painting updated according to preference!";
         notificationCanvas.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(2f);

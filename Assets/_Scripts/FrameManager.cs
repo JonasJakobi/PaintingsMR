@@ -16,7 +16,7 @@ public class FrameManager : MonoBehaviour
     List<OVRSpatialAnchor.UnboundAnchor> _unboundAnchors = new();
 
     public List<PaintingData> paintings = new();
-    List<PaintingData> pickedPaintings = new();
+    public List<PaintingData> pickedPaintings = new();
     public List<PaintingObject> frames = new();
     private Dictionary<PaintingTag, int> tagsLikeCounter = new();
 
